@@ -101,6 +101,7 @@ export * from "./VerifyInstitutionalCompany";
 export * from "./getInstitutionalMemberSchemas";
 export * from "./verifyInstitutionalMember";
 export * from "./verifyInstitutionalDocument";
-export * from "./verificationStatus"
-export * from "./depositToYield"
-export * from "./withdrawFromYield"
+export * from "./verificationStatus";
+export * from "./depositToYield";
+export * from "./withdrawFromYield";
+export * from "./getProvinces";

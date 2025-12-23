@@ -8,4 +8,5 @@ export interface CreateFiatWithdrawRequest {
   person_type?: string
   cuit?: string
   name?: string
+  user_id?: string
 }

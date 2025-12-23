@@ -52,3 +52,5 @@ export * from "./arProvince";
 export * from "./clComune";
 export * from "./brState";
 export * from "./profession";
+export * from "./intTransactionType";
+export * from "./intTransactionSubType";
