@@ -52,3 +52,5 @@ export * from "./arProvince.js";
 export * from "./clComune.js";
 export * from "./brState.js";
 export * from "./profession.js";
+export * from "./intTransactionType.js";
+export * from "./intTransactionSubType.js";

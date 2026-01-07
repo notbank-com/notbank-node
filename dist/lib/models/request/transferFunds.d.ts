@@ -5,4 +5,5 @@ export interface TransferFundsRequest {
     amount: string;
     notes?: string;
     otp?: string;
+    user_id?: string;
 }

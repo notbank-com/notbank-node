@@ -59,14 +59,9 @@ describe("wallet service", () => {
         const coBankAccountId = 'cb54ca55-10ef-4584-9f87-e5f3b1ecf7b6';
         const arBankAccoutnId = '4d677d9c-81e1-45d2-9903-43fd599b6599';
         it("should work", () => __awaiter(void 0, void 0, void 0, function* () {
-            try {
-                const account = yield service.getClientBankAccount({ bankAccountId: "arBankAccoutnId" });
-                console.log("account:", account);
-                assert.ok(account);
-            }
-            catch (error) {
-                console.log(JSON.stringify(error));
-            }
+            const account = yield service.getClientBankAccount({ bankAccountId: arBankAccoutnId });
+            console.log("account:", account);
+            assert.ok(account);
         }));
     });
     describe("getClientBankAccounts", () => {
@@ -76,7 +71,7 @@ describe("wallet service", () => {
             assert.ok(account);
         }));
     });
-    describe.only("deleteClientBankAccounts", () => {
+    describe("deleteClientBankAccounts", () => {
         it("should work", () => __awaiter(void 0, void 0, void 0, function* () {
             const bankAccountId = '4172acac-f18e-41e2-8423-94e1c7feeebf';
             const account = yield service.deleteClientBankAccount({ bankAccountId: bankAccountId });

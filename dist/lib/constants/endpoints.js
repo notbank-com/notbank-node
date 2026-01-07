@@ -81,6 +81,7 @@ export var Endpoint;
     Endpoint["GET_USER_PERMISSIONS"] = "GetUserPermissions";
     // Wallet
     Endpoint["BANKS"] = "banks";
+    Endpoint["PROVINCES"] = "provinces";
     Endpoint["BANK_ACCOUNTS"] = "bank-accounts";
     Endpoint["GET_NETWORKS_TEMPLATES"] = "wallet/crypto/withdrawal/templates";
     Endpoint["DEPOSIT_ADDRESS"] = "wallet/crypto";

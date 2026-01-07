@@ -6,4 +6,5 @@ export interface AddWhitelistedAddressRequest {
     label: string;
     memo_or_tag?: string;
     otp: string;
+    user_id?: string;
 }

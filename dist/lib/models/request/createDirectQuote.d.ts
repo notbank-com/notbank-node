@@ -4,4 +4,5 @@ export interface CreateDirectQuoteRequest {
     from_amount: string | number;
     to_currency: string;
     operation: string;
+    user_id?: string;
 }

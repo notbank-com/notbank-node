@@ -177,6 +177,8 @@ var NotbankSdk = (() => {
     InstitutionalMember: () => InstitutionalMember,
     InstrumentStateArgument: () => InstrumentStateArgument,
     InstrumentType: () => InstrumentType,
+    IntTransactionSubType: () => IntTransactionSubType,
+    IntTransactionType: () => IntTransactionType,
     MakerTaker: () => MakerTaker,
     NotbankError: () => NotbankError,
     OrderFlag: () => OrderFlag,
@@ -1181,6 +1183,46 @@ var NotbankSdk = (() => {
     return Profession2;
   })(Profession || {});
 
+  // lib/models/enums/intTransactionType.ts
+  var IntTransactionType = /* @__PURE__ */ ((IntTransactionType2) => {
+    IntTransactionType2[IntTransactionType2["OTHER"] = 0] = "OTHER";
+    IntTransactionType2[IntTransactionType2["DEPOSIT"] = 1] = "DEPOSIT";
+    IntTransactionType2[IntTransactionType2["WITHDRAW"] = 2] = "WITHDRAW";
+    IntTransactionType2[IntTransactionType2["TRANSFER"] = 3] = "TRANSFER";
+    IntTransactionType2[IntTransactionType2["TRADE"] = 4] = "TRADE";
+    IntTransactionType2[IntTransactionType2["PAYMENT"] = 5] = "PAYMENT";
+    IntTransactionType2[IntTransactionType2["RECTIFICATION"] = 6] = "RECTIFICATION";
+    IntTransactionType2[IntTransactionType2["FEE"] = 7] = "FEE";
+    IntTransactionType2[IntTransactionType2["REVERSE"] = 8] = "REVERSE";
+    IntTransactionType2[IntTransactionType2["HOLD"] = 9] = "HOLD";
+    IntTransactionType2[IntTransactionType2["MARGIN"] = 10] = "MARGIN";
+    IntTransactionType2[IntTransactionType2["AIRDROP"] = 11] = "AIRDROP";
+    IntTransactionType2[IntTransactionType2["DISTRIBUTION"] = 12] = "DISTRIBUTION";
+    return IntTransactionType2;
+  })(IntTransactionType || {});
+
+  // lib/models/enums/intTransactionSubType.ts
+  var IntTransactionSubType = /* @__PURE__ */ ((IntTransactionSubType2) => {
+    IntTransactionSubType2[IntTransactionSubType2["OTHER"] = 0] = "OTHER";
+    IntTransactionSubType2[IntTransactionSubType2["PAYOUT"] = 1] = "PAYOUT";
+    IntTransactionSubType2[IntTransactionSubType2["PAYIN"] = 2] = "PAYIN";
+    IntTransactionSubType2[IntTransactionSubType2["DEPOSIT"] = 3] = "DEPOSIT";
+    IntTransactionSubType2[IntTransactionSubType2["WITHDRAW"] = 4] = "WITHDRAW";
+    IntTransactionSubType2[IntTransactionSubType2["BANK_TO_EXCHANGE"] = 5] = "BANK_TO_EXCHANGE";
+    IntTransactionSubType2[IntTransactionSubType2["EXCHANGE_TO_BANK"] = 6] = "EXCHANGE_TO_BANK";
+    IntTransactionSubType2[IntTransactionSubType2["TRADE"] = 7] = "TRADE";
+    IntTransactionSubType2[IntTransactionSubType2["PAYMENT"] = 8] = "PAYMENT";
+    IntTransactionSubType2[IntTransactionSubType2["SIMPLE"] = 9] = "SIMPLE";
+    IntTransactionSubType2[IntTransactionSubType2["RECTIFICATION"] = 10] = "RECTIFICATION";
+    IntTransactionSubType2[IntTransactionSubType2["TRANSFER"] = 11] = "TRANSFER";
+    IntTransactionSubType2[IntTransactionSubType2["HOLD"] = 12] = "HOLD";
+    IntTransactionSubType2[IntTransactionSubType2["MARGIN"] = 13] = "MARGIN";
+    IntTransactionSubType2[IntTransactionSubType2["AIRDROP"] = 14] = "AIRDROP";
+    IntTransactionSubType2[IntTransactionSubType2["ORDER"] = 15] = "ORDER";
+    IntTransactionSubType2[IntTransactionSubType2["DISTRIBUTION_ENTRY"] = 16] = "DISTRIBUTION_ENTRY";
+    return IntTransactionSubType2;
+  })(IntTransactionSubType || {});
+
   // lib/models/response/getAccountFees.ts
   var FeeCalcType = /* @__PURE__ */ ((FeeCalcType2) => {
     FeeCalcType2["Flat"] = "Flat";
@@ -1257,10 +1299,7 @@ var NotbankSdk = (() => {
           errMsg += ".";
         }
       }
-      return new _NotbankError(
-        errMsg,
-        -1
-      );
+      return new _NotbankError(errMsg, -1);
     }
   };
   var NotbankError = _NotbankError;
@@ -4028,21 +4067,22 @@ var NotbankSdk = (() => {
   var Requester = _Requester;
 
   // lib/core/http/jsonRequester.ts
-  var JsonRequester = class {
-    request(config) {
+  var JsonRequester = class _JsonRequester {
+    static request(config) {
       const isPostOrDeleteRequest = [
         "POST" /* POST */,
         "DELETE" /* DELETE */
       ].includes(config.requestType);
-      var url = isPostOrDeleteRequest ? config.url : this.getUrlWithSearchParams(config.url, config.params);
+      var url = isPostOrDeleteRequest ? config.url : _JsonRequester.getUrlWithSearchParams(config.url, config.params);
       var data = isPostOrDeleteRequest ? config.params : null;
-      var requestData = {
+      var requestConfig = {
         method: config.requestType,
-        headers: this.getHeaders(config.extraHeaders, isPostOrDeleteRequest)
+        headers: _JsonRequester.getHeaders(config.extraHeaders, isPostOrDeleteRequest),
+        validateStatus: (status) => true
       };
-      return Requester.getFunction(config.requestType)(url, data, requestData);
+      return Requester.getFunction(config.requestType)(url, data, requestConfig);
     }
-    getHeaders(extraHeaders, withJsonData = false) {
+    static getHeaders(extraHeaders, withJsonData = false) {
       var headers = {
         charset: "UTF-8"
       };
@@ -4054,7 +4094,7 @@ var NotbankSdk = (() => {
       }
       return headers;
     }
-    getUrlWithSearchParams(endpoint, params) {
+    static getUrlWithSearchParams(endpoint, params) {
       return params ? endpoint + "?" + new URLSearchParams(params) : endpoint;
     }
   };
@@ -4063,39 +4103,32 @@ var NotbankSdk = (() => {
   var NbResponseHandler = class {
     static handle(response, paged) {
       return __async(this, null, function* () {
-        try {
-          var jsonResponse = response.data;
-          if (!jsonResponse) {
-            throw new NotbankError("http error. (status=" + response.status + ")", -1);
-          }
-          var nbResponse = jsonResponse;
-          if ((nbResponse == null ? void 0 : nbResponse.status) === "success") {
-            return paged ? jsonResponse : nbResponse.data;
-          }
-          const error = NotbankError.Factory.createFromNbResponse(nbResponse, response.status);
-          throw error;
-        } catch (error) {
-          throw error;
+        var jsonResponse = response.data;
+        if (!jsonResponse) {
+          throw new NotbankError("http error. (status=" + response.status + ")", -1);
         }
+        var nbResponse = jsonResponse;
+        if ((nbResponse == null ? void 0 : nbResponse.status) === "success") {
+          return paged ? jsonResponse : nbResponse.data;
+        }
+        throw NotbankError.Factory.createFromNbResponse(nbResponse, response.status);
       });
     }
   };
 
   // lib/core/http/httpConnection.ts
-  var _jsonRequester, _host, _sessionToken;
+  var _host, _sessionToken;
   var HttpConnection = class {
     constructor(domain) {
-      __privateAdd(this, _jsonRequester);
       __privateAdd(this, _host);
       __privateAdd(this, _sessionToken);
-      __privateSet(this, _jsonRequester, new JsonRequester());
       __privateSet(this, _host, "https://" + domain);
     }
     nbRequest(endpoint, requestType, message, paged = false) {
       return __async(this, null, function* () {
         const url = this.getNbUrl(endpoint);
         const headers = this.getHeaders();
-        var response = yield __privateGet(this, _jsonRequester).request({ url, requestType, params: message, extraHeaders: headers });
+        var response = yield JsonRequester.request({ url, requestType, params: message, extraHeaders: headers });
         return yield NbResponseHandler.handle(response, paged);
       });
     }
@@ -4112,7 +4145,7 @@ var NotbankSdk = (() => {
       return __async(this, null, function* () {
         const url = this.getApUrl(endpoint);
         const headers = __spreadValues(__spreadValues({}, extraHeaders), this.getHeaders());
-        const response = yield __privateGet(this, _jsonRequester).request({
+        const response = yield JsonRequester.request({
           url,
           requestType,
           params: message,
@@ -4166,7 +4199,6 @@ var NotbankSdk = (() => {
       return {};
     }
   };
-  _jsonRequester = new WeakMap();
   _host = new WeakMap();
   _sessionToken = new WeakMap();
 
@@ -4828,14 +4860,15 @@ var NotbankSdk = (() => {
     /**
      * https://apidoc.notbank.exchange/#getlevel1summary
      */
-    getLevel1Summary(request) {
-      return __async(this, null, function* () {
+    getLevel1Summary() {
+      return __async(this, arguments, function* (request = {}) {
         const paramsWithOMSId = completeParams(request, this.OMS_ID);
-        return this.connection.apRequest(
+        const response = yield this.connection.apRequest(
           "GetLevel1Summary" /* GET_LEVEL1_SUMMARY */,
           "POST" /* POST */,
           paramsWithOMSId
         );
+        return response.map((summary) => JSON.parse(summary));
       });
     }
     /**
@@ -5105,6 +5138,12 @@ var NotbankSdk = (() => {
      */
     getBanks(request) {
       return __privateMethod(this, _WalletService_instances, nbPagedRequest_fn).call(this, "banks" /* BANKS */, "GET" /* GET */, request);
+    }
+    /**
+     * https://apidoc.notbank.exchange/#getprovinces
+     */
+    getProvinces(request) {
+      return __privateMethod(this, _WalletService_instances, nbPagedRequest_fn).call(this, "provinces" /* PROVINCES */, "GET" /* GET */, request);
     }
     /**
      * https://apidoc.notbank.exchange/#addclientbankaccount

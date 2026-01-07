@@ -58,3 +58,4 @@ export * from "./withdrawTicket.js";
 export * from "./institutionalMember.js";
 export * from "./verificationStatus.js";
 export * from "./enumType.js";
+export * from "./province.js";

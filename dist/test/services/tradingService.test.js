@@ -63,4 +63,11 @@ describe("http trading service", () => {
             assert.equal(orderbook.bids.length, 5);
         }));
     });
+    describe("GetLevel1Summary", () => {
+        it("should throw an error for missing required parameters", () => __awaiter(void 0, void 0, void 0, function* () {
+            var response = yield tradingService.getLevel1Summary();
+            assert.ok(response);
+            console.log(response);
+        }));
+    });
 });
