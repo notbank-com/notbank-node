@@ -166,7 +166,6 @@ var NotbankSdk = (() => {
     ChangeReason: () => ChangeReason,
     ChileBankAccountKind: () => ChileBankAccountKind,
     ColombiaBankAccountKind: () => ColombiaBankAccountKind,
-    DepositFeeMessages: () => DepositFeeMessages,
     DepositStatus: () => DepositStatus,
     Direction: () => Direction,
     DocumentAdressType: () => DocumentAdressType,
@@ -191,6 +190,7 @@ var NotbankSdk = (() => {
     PixType: () => PixType,
     ProductType: () => ProductType,
     Profession: () => Profession,
+    QuoteMode: () => QuoteMode,
     ReferenceType: () => ReferenceType,
     ReportFlavor: () => ReportFlavor,
     ReportFrequency: () => ReportFrequency,
@@ -210,7 +210,6 @@ var NotbankSdk = (() => {
     UnsubscribeTradesError: () => UnsubscribeTradesError,
     UnsubscriptionResponse: () => UnsubscriptionResponse,
     WithdrawErrorCode: () => WithdrawErrorCode,
-    WithdrawFeeMessages: () => WithdrawFeeMessages,
     WithdrawTemplateType: () => WithdrawTemplateType,
     YieldProduct: () => YieldProduct,
     orderbookFromRaw: () => orderbookFromRaw
@@ -295,14 +294,6 @@ var NotbankSdk = (() => {
     SupportedCountry2["CO"] = "CO";
     return SupportedCountry2;
   })(SupportedCountry || {});
-
-  // lib/models/enums/depositFeeMessages.ts
-  var DepositFeeMessages = /* @__PURE__ */ ((DepositFeeMessages2) => {
-    DepositFeeMessages2["Success"] = "Fee calculated successfully";
-    DepositFeeMessages2["InvalidRequest"] = "Invalid Request";
-    DepositFeeMessages2["AccountOrProductNotFound"] = "Account or Product not found";
-    return DepositFeeMessages2;
-  })(DepositFeeMessages || {});
 
   // lib/models/enums/depositStatus.ts
   var DepositStatus = /* @__PURE__ */ ((DepositStatus2) => {
@@ -647,14 +638,6 @@ var NotbankSdk = (() => {
     WithdrawErrorCode2[WithdrawErrorCode2["ResourceNotFound"] = 104] = "ResourceNotFound";
     return WithdrawErrorCode2;
   })(WithdrawErrorCode || {});
-
-  // lib/models/enums/withdrawFeeMessages.ts
-  var WithdrawFeeMessages = /* @__PURE__ */ ((WithdrawFeeMessages2) => {
-    WithdrawFeeMessages2["Success"] = "Fee calculated successfully";
-    WithdrawFeeMessages2["InvalidRequest"] = "Invalid Request";
-    WithdrawFeeMessages2["AccountOrProductNotFound"] = "Account or Product not found";
-    return WithdrawFeeMessages2;
-  })(WithdrawFeeMessages || {});
 
   // lib/models/enums/withdrawTemplateType.ts
   var WithdrawTemplateType = /* @__PURE__ */ ((WithdrawTemplateType2) => {
@@ -1222,6 +1205,13 @@ var NotbankSdk = (() => {
     IntTransactionSubType2[IntTransactionSubType2["DISTRIBUTION_ENTRY"] = 16] = "DISTRIBUTION_ENTRY";
     return IntTransactionSubType2;
   })(IntTransactionSubType || {});
+
+  // lib/models/enums/quoteMode.ts
+  var QuoteMode = /* @__PURE__ */ ((QuoteMode2) => {
+    QuoteMode2["DIRECT"] = "direct";
+    QuoteMode2["INVERSE"] = "inverse";
+    return QuoteMode2;
+  })(QuoteMode || {});
 
   // lib/models/response/getAccountFees.ts
   var FeeCalcType = /* @__PURE__ */ ((FeeCalcType2) => {

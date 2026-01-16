@@ -1,4 +1,5 @@
+import { QuoteMode } from "../enums/index.js";
 export interface GetQuotesRequest {
-    mode: string;
+    mode: QuoteMode;
     user_id?: string;
 }
