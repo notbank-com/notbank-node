@@ -1,4 +1,6 @@
+import { QuoteMode } from "../enums"
+
 export interface GetQuotesRequest {
-  mode: string
+  mode: QuoteMode
   user_id?: string
 }

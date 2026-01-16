@@ -59,6 +59,7 @@ export class HttpConnection {
                 params: message,
                 extraHeaders: headers
             });
+            console.log(response.data);
             return yield ApResponseHandler.handle(response);
         });
     }

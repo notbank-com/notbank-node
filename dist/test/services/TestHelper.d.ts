@@ -1,4 +1,4 @@
-type Credentials = {
+export type Credentials = {
     UserId: number;
     AccountId: number;
     ApiPublicKey: string;
@@ -9,4 +9,3 @@ export declare class TestHelper {
     private static loadCredentials;
     static getCredentials(): Credentials;
 }
-export {};
