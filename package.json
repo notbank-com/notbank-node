@@ -1,9 +1,9 @@
 {
   "name": "notbank",
-  "version": "2.4.0-alpha",
+  "version": "2.7.0-alpha",
   "description": "The Notbank for Node.js",
   "homepage": "https://notbank.exchange",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "type": "module",
   "engines": {
     "node": ">=14.21.3"
