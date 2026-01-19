@@ -1,6 +1,6 @@
 {
   "name": "notbank",
-  "version": "2.7.0-alpha",
+  "version": "2.8.0-alpha",
   "description": "The Notbank for Node.js",
   "homepage": "https://notbank.exchange",
   "main": "dist/lib/index.js",
