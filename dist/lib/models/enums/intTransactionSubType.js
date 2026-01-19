@@ -1,0 +1,20 @@
+export var IntTransactionSubType;
+(function (IntTransactionSubType) {
+    IntTransactionSubType[IntTransactionSubType["OTHER"] = 0] = "OTHER";
+    IntTransactionSubType[IntTransactionSubType["PAYOUT"] = 1] = "PAYOUT";
+    IntTransactionSubType[IntTransactionSubType["PAYIN"] = 2] = "PAYIN";
+    IntTransactionSubType[IntTransactionSubType["DEPOSIT"] = 3] = "DEPOSIT";
+    IntTransactionSubType[IntTransactionSubType["WITHDRAW"] = 4] = "WITHDRAW";
+    IntTransactionSubType[IntTransactionSubType["BANK_TO_EXCHANGE"] = 5] = "BANK_TO_EXCHANGE";
+    IntTransactionSubType[IntTransactionSubType["EXCHANGE_TO_BANK"] = 6] = "EXCHANGE_TO_BANK";
+    IntTransactionSubType[IntTransactionSubType["TRADE"] = 7] = "TRADE";
+    IntTransactionSubType[IntTransactionSubType["PAYMENT"] = 8] = "PAYMENT";
+    IntTransactionSubType[IntTransactionSubType["SIMPLE"] = 9] = "SIMPLE";
+    IntTransactionSubType[IntTransactionSubType["RECTIFICATION"] = 10] = "RECTIFICATION";
+    IntTransactionSubType[IntTransactionSubType["TRANSFER"] = 11] = "TRANSFER";
+    IntTransactionSubType[IntTransactionSubType["HOLD"] = 12] = "HOLD";
+    IntTransactionSubType[IntTransactionSubType["MARGIN"] = 13] = "MARGIN";
+    IntTransactionSubType[IntTransactionSubType["AIRDROP"] = 14] = "AIRDROP";
+    IntTransactionSubType[IntTransactionSubType["ORDER"] = 15] = "ORDER";
+    IntTransactionSubType[IntTransactionSubType["DISTRIBUTION_ENTRY"] = 16] = "DISTRIBUTION_ENTRY";
+})(IntTransactionSubType || (IntTransactionSubType = {}));

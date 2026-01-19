@@ -5,4 +5,5 @@ export interface WithdrawFromYieldRequest {
   product_id: number
   currency: string
   type: YieldProduct
+  user_id?: string
 }

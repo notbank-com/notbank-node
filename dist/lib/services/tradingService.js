@@ -117,10 +117,11 @@ export class TradingService {
     /**
      * https://apidoc.notbank.exchange/#getlevel1summary
      */
-    getLevel1Summary(request) {
-        return __awaiter(this, void 0, void 0, function* () {
+    getLevel1Summary() {
+        return __awaiter(this, arguments, void 0, function* (request = {}) {
             const paramsWithOMSId = completeParams(request, this.OMS_ID);
-            return this.connection.apRequest(Endpoint.GET_LEVEL1_SUMMARY, RequestType.POST, paramsWithOMSId);
+            const response = yield this.connection.apRequest(Endpoint.GET_LEVEL1_SUMMARY, RequestType.POST, paramsWithOMSId);
+            return response.map(summary => JSON.parse(summary));
         });
     }
     /**

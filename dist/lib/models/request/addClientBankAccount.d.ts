@@ -7,4 +7,5 @@ export interface AddClientBankAccountRequest {
     agency?: string;
     dv?: string;
     province?: string;
+    user_id?: string;
 }

@@ -70,6 +70,7 @@ export declare enum Endpoint {
     GET_USER_INFO = "GetUserInfo",
     GET_USER_PERMISSIONS = "GetUserPermissions",
     BANKS = "banks",
+    PROVINCES = "provinces",
     BANK_ACCOUNTS = "bank-accounts",
     GET_NETWORKS_TEMPLATES = "wallet/crypto/withdrawal/templates",
     DEPOSIT_ADDRESS = "wallet/crypto",

@@ -55,6 +55,7 @@ export * from "./userRegistration";
 export * from "./webAuthenticateUser";
 export * from "./withdrawTemplate";
 export * from "./withdrawTicket";
-export * from "./institutionalMember"
-export * from "./verificationStatus"
-export * from "./enumType"
+export * from "./institutionalMember";
+export * from "./verificationStatus";
+export * from "./enumType";
+export * from "./province";

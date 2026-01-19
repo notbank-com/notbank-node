@@ -166,7 +166,6 @@ var NotbankSdk = (() => {
     ChangeReason: () => ChangeReason,
     ChileBankAccountKind: () => ChileBankAccountKind,
     ColombiaBankAccountKind: () => ColombiaBankAccountKind,
-    DepositFeeMessages: () => DepositFeeMessages,
     DepositStatus: () => DepositStatus,
     Direction: () => Direction,
     DocumentAdressType: () => DocumentAdressType,
@@ -177,6 +176,8 @@ var NotbankSdk = (() => {
     InstitutionalMember: () => InstitutionalMember,
     InstrumentStateArgument: () => InstrumentStateArgument,
     InstrumentType: () => InstrumentType,
+    IntTransactionSubType: () => IntTransactionSubType,
+    IntTransactionType: () => IntTransactionType,
     MakerTaker: () => MakerTaker,
     NotbankError: () => NotbankError,
     OrderFlag: () => OrderFlag,
@@ -189,6 +190,7 @@ var NotbankSdk = (() => {
     PixType: () => PixType,
     ProductType: () => ProductType,
     Profession: () => Profession,
+    QuoteMode: () => QuoteMode,
     ReferenceType: () => ReferenceType,
     ReportFlavor: () => ReportFlavor,
     ReportFrequency: () => ReportFrequency,
@@ -208,7 +210,6 @@ var NotbankSdk = (() => {
     UnsubscribeTradesError: () => UnsubscribeTradesError,
     UnsubscriptionResponse: () => UnsubscriptionResponse,
     WithdrawErrorCode: () => WithdrawErrorCode,
-    WithdrawFeeMessages: () => WithdrawFeeMessages,
     WithdrawTemplateType: () => WithdrawTemplateType,
     YieldProduct: () => YieldProduct,
     orderbookFromRaw: () => orderbookFromRaw
@@ -293,14 +294,6 @@ var NotbankSdk = (() => {
     SupportedCountry2["CO"] = "CO";
     return SupportedCountry2;
   })(SupportedCountry || {});
-
-  // lib/models/enums/depositFeeMessages.ts
-  var DepositFeeMessages = /* @__PURE__ */ ((DepositFeeMessages2) => {
-    DepositFeeMessages2["Success"] = "Fee calculated successfully";
-    DepositFeeMessages2["InvalidRequest"] = "Invalid Request";
-    DepositFeeMessages2["AccountOrProductNotFound"] = "Account or Product not found";
-    return DepositFeeMessages2;
-  })(DepositFeeMessages || {});
 
   // lib/models/enums/depositStatus.ts
   var DepositStatus = /* @__PURE__ */ ((DepositStatus2) => {
@@ -645,14 +638,6 @@ var NotbankSdk = (() => {
     WithdrawErrorCode2[WithdrawErrorCode2["ResourceNotFound"] = 104] = "ResourceNotFound";
     return WithdrawErrorCode2;
   })(WithdrawErrorCode || {});
-
-  // lib/models/enums/withdrawFeeMessages.ts
-  var WithdrawFeeMessages = /* @__PURE__ */ ((WithdrawFeeMessages2) => {
-    WithdrawFeeMessages2["Success"] = "Fee calculated successfully";
-    WithdrawFeeMessages2["InvalidRequest"] = "Invalid Request";
-    WithdrawFeeMessages2["AccountOrProductNotFound"] = "Account or Product not found";
-    return WithdrawFeeMessages2;
-  })(WithdrawFeeMessages || {});
 
   // lib/models/enums/withdrawTemplateType.ts
   var WithdrawTemplateType = /* @__PURE__ */ ((WithdrawTemplateType2) => {
@@ -1180,6 +1165,53 @@ var NotbankSdk = (() => {
     Profession2["MANAGER_OFFICIER"] = "manager_officier";
     return Profession2;
   })(Profession || {});
+
+  // lib/models/enums/intTransactionType.ts
+  var IntTransactionType = /* @__PURE__ */ ((IntTransactionType2) => {
+    IntTransactionType2[IntTransactionType2["OTHER"] = 0] = "OTHER";
+    IntTransactionType2[IntTransactionType2["DEPOSIT"] = 1] = "DEPOSIT";
+    IntTransactionType2[IntTransactionType2["WITHDRAW"] = 2] = "WITHDRAW";
+    IntTransactionType2[IntTransactionType2["TRANSFER"] = 3] = "TRANSFER";
+    IntTransactionType2[IntTransactionType2["TRADE"] = 4] = "TRADE";
+    IntTransactionType2[IntTransactionType2["PAYMENT"] = 5] = "PAYMENT";
+    IntTransactionType2[IntTransactionType2["RECTIFICATION"] = 6] = "RECTIFICATION";
+    IntTransactionType2[IntTransactionType2["FEE"] = 7] = "FEE";
+    IntTransactionType2[IntTransactionType2["REVERSE"] = 8] = "REVERSE";
+    IntTransactionType2[IntTransactionType2["HOLD"] = 9] = "HOLD";
+    IntTransactionType2[IntTransactionType2["MARGIN"] = 10] = "MARGIN";
+    IntTransactionType2[IntTransactionType2["AIRDROP"] = 11] = "AIRDROP";
+    IntTransactionType2[IntTransactionType2["DISTRIBUTION"] = 12] = "DISTRIBUTION";
+    return IntTransactionType2;
+  })(IntTransactionType || {});
+
+  // lib/models/enums/intTransactionSubType.ts
+  var IntTransactionSubType = /* @__PURE__ */ ((IntTransactionSubType2) => {
+    IntTransactionSubType2[IntTransactionSubType2["OTHER"] = 0] = "OTHER";
+    IntTransactionSubType2[IntTransactionSubType2["PAYOUT"] = 1] = "PAYOUT";
+    IntTransactionSubType2[IntTransactionSubType2["PAYIN"] = 2] = "PAYIN";
+    IntTransactionSubType2[IntTransactionSubType2["DEPOSIT"] = 3] = "DEPOSIT";
+    IntTransactionSubType2[IntTransactionSubType2["WITHDRAW"] = 4] = "WITHDRAW";
+    IntTransactionSubType2[IntTransactionSubType2["BANK_TO_EXCHANGE"] = 5] = "BANK_TO_EXCHANGE";
+    IntTransactionSubType2[IntTransactionSubType2["EXCHANGE_TO_BANK"] = 6] = "EXCHANGE_TO_BANK";
+    IntTransactionSubType2[IntTransactionSubType2["TRADE"] = 7] = "TRADE";
+    IntTransactionSubType2[IntTransactionSubType2["PAYMENT"] = 8] = "PAYMENT";
+    IntTransactionSubType2[IntTransactionSubType2["SIMPLE"] = 9] = "SIMPLE";
+    IntTransactionSubType2[IntTransactionSubType2["RECTIFICATION"] = 10] = "RECTIFICATION";
+    IntTransactionSubType2[IntTransactionSubType2["TRANSFER"] = 11] = "TRANSFER";
+    IntTransactionSubType2[IntTransactionSubType2["HOLD"] = 12] = "HOLD";
+    IntTransactionSubType2[IntTransactionSubType2["MARGIN"] = 13] = "MARGIN";
+    IntTransactionSubType2[IntTransactionSubType2["AIRDROP"] = 14] = "AIRDROP";
+    IntTransactionSubType2[IntTransactionSubType2["ORDER"] = 15] = "ORDER";
+    IntTransactionSubType2[IntTransactionSubType2["DISTRIBUTION_ENTRY"] = 16] = "DISTRIBUTION_ENTRY";
+    return IntTransactionSubType2;
+  })(IntTransactionSubType || {});
+
+  // lib/models/enums/quoteMode.ts
+  var QuoteMode = /* @__PURE__ */ ((QuoteMode2) => {
+    QuoteMode2["DIRECT"] = "direct";
+    QuoteMode2["INVERSE"] = "inverse";
+    return QuoteMode2;
+  })(QuoteMode || {});
 
   // lib/models/response/getAccountFees.ts
   var FeeCalcType = /* @__PURE__ */ ((FeeCalcType2) => {
@@ -4818,14 +4850,15 @@ var NotbankSdk = (() => {
     /**
      * https://apidoc.notbank.exchange/#getlevel1summary
      */
-    getLevel1Summary(request) {
-      return __async(this, null, function* () {
+    getLevel1Summary() {
+      return __async(this, arguments, function* (request = {}) {
         const paramsWithOMSId = completeParams(request, this.OMS_ID);
-        return this.connection.apRequest(
+        const response = yield this.connection.apRequest(
           "GetLevel1Summary" /* GET_LEVEL1_SUMMARY */,
           "POST" /* POST */,
           paramsWithOMSId
         );
+        return response.map((summary) => JSON.parse(summary));
       });
     }
     /**
@@ -5095,6 +5128,12 @@ var NotbankSdk = (() => {
      */
     getBanks(request) {
       return __privateMethod(this, _WalletService_instances, nbPagedRequest_fn).call(this, "banks" /* BANKS */, "GET" /* GET */, request);
+    }
+    /**
+     * https://apidoc.notbank.exchange/#getprovinces
+     */
+    getProvinces(request) {
+      return __privateMethod(this, _WalletService_instances, nbPagedRequest_fn).call(this, "provinces" /* PROVINCES */, "GET" /* GET */, request);
     }
     /**
      * https://apidoc.notbank.exchange/#addclientbankaccount
