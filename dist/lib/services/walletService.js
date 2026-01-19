@@ -27,6 +27,12 @@ export class WalletService {
         return __classPrivateFieldGet(this, _WalletService_instances, "m", _WalletService_nbPagedRequest).call(this, Endpoint.BANKS, RequestType.GET, request);
     }
     /**
+     * https://apidoc.notbank.exchange/#getprovinces
+     */
+    getProvinces(request) {
+        return __classPrivateFieldGet(this, _WalletService_instances, "m", _WalletService_nbPagedRequest).call(this, Endpoint.PROVINCES, RequestType.GET, request);
+    }
+    /**
      * https://apidoc.notbank.exchange/#addclientbankaccount
      */
     AddClientBankAccount(request) {

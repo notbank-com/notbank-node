@@ -89,6 +89,7 @@ export enum Endpoint {
 
   // Wallet
   BANKS = "banks",
+  PROVINCES = "provinces",
   BANK_ACCOUNTS = "bank-accounts",
   GET_NETWORKS_TEMPLATES = "wallet/crypto/withdrawal/templates",
   DEPOSIT_ADDRESS = "wallet/crypto",

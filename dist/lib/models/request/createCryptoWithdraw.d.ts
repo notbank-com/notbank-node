@@ -6,4 +6,5 @@ export interface CreateCryptoWithdrawRequest {
     amount: string;
     memo_or_tag?: string;
     otp?: string;
+    user_id?: string;
 }

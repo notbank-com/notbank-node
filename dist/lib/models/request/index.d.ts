@@ -104,3 +104,4 @@ export * from "./verifyInstitutionalDocument.js";
 export * from "./verificationStatus.js";
 export * from "./depositToYield.js";
 export * from "./withdrawFromYield.js";
+export * from "./getProvinces.js";

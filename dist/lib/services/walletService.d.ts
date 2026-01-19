@@ -26,6 +26,8 @@ import { CurrencyNetworkTemplates } from "../models/response/networkTemplates.js
 import { Transactions } from "../models/response/transaction.js";
 import { WhiteListedAddress } from "../models/response/whiteListedAddress.js";
 import { ResendVerificationCodeWhitelistedAddressRequest } from "../models/request/resendVerificationCodeWhitelistedAddress.js";
+import { Province } from "../models/response/index.js";
+import { GetProvincesRequest } from "../models/request/index.js";
 export declare class WalletService {
     #private;
     connection: ServiceConnection;
@@ -34,6 +36,10 @@ export declare class WalletService {
      * https://apidoc.notbank.exchange/#getbanks
      */
     getBanks(request: GetBankRequest): Promise<Banks>;
+    /**
+     * https://apidoc.notbank.exchange/#getprovinces
+     */
+    getProvinces(request: GetProvincesRequest): Promise<Province[]>;
     /**
      * https://apidoc.notbank.exchange/#addclientbankaccount
      */

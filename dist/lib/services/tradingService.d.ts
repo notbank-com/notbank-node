@@ -94,7 +94,7 @@ export declare class TradingService {
     /**
      * https://apidoc.notbank.exchange/#getlevel1summary
      */
-    getLevel1Summary(request: GetLevel1SummaryRequest): Promise<Level1Summary[]>;
+    getLevel1Summary(request?: GetLevel1SummaryRequest): Promise<Level1Summary[]>;
     /**
      * https://apidoc.notbank.exchange/#getlevel1summarymin
      */

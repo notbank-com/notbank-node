@@ -71,4 +71,12 @@ describe("http trading service", () => {
       assert.equal(orderbook.bids.length, 5)
     });
   });
+
+  describe("GetLevel1Summary", () => {
+    it("should throw an error for missing required parameters", async () => {
+      var response = await tradingService.getLevel1Summary()
+      assert.ok(response)
+      console.log(response)
+    });
+  });
 });

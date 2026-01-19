@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-type Credentials = { UserId: number, AccountId: number; ApiPublicKey: string, ApiSecretKey: string }
+export type Credentials = { UserId: number, AccountId: number; ApiPublicKey: string, ApiSecretKey: string }
 export class TestHelper {
   private static credentials: Credentials
 

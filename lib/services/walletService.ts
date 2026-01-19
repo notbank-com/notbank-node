@@ -27,6 +27,8 @@ import { CurrencyNetworkTemplates } from "../models/response/networkTemplates";
 import { Transactions } from "../models/response/transaction";
 import { WhiteListedAddress } from "../models/response/whiteListedAddress";
 import { ResendVerificationCodeWhitelistedAddressRequest } from "../models/request/resendVerificationCodeWhitelistedAddress";
+import { Province } from "../models/response";
+import { GetProvincesRequest } from "../models/request";
 
 export class WalletService {
   connection: ServiceConnection;
@@ -50,6 +52,18 @@ export class WalletService {
   getBanks(request: GetBankRequest): Promise<Banks> {
     return this.#nbPagedRequest(
       Endpoint.BANKS,
+      RequestType.GET,
+      request
+    );
+  }
+
+
+  /**
+   * https://apidoc.notbank.exchange/#getprovinces
+   */
+  getProvinces(request: GetProvincesRequest): Promise<Province[]> {
+    return this.#nbPagedRequest(
+      Endpoint.PROVINCES,
       RequestType.GET,
       request
     );
