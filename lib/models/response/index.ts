@@ -59,3 +59,4 @@ export * from "./institutionalMember";
 export * from "./verificationStatus";
 export * from "./enumType";
 export * from "./province";
+export * from "./subAccount";

@@ -13,6 +13,7 @@ import { QuoteService } from "./quoteService";
 import { RegisterService } from "./registerService";
 import { ReportService } from "./reportService";
 import { SavingsService } from "./savingsService";
+import { SubAccountService } from "./subAccountService";
 import { SubscriptionService } from "./subscriptionService";
 import { SystemService } from "./systemService";
 import { TradingService } from "./tradingService";
@@ -145,5 +146,9 @@ export class WebsocketServiceFactory {
 
   newSavingsService(): SavingsService {
     return new SavingsService(this.serviceConnection);
+  }
+
+  newSubAccountService(): SubAccountService {
+    return new SubAccountService(this.serviceConnection);
   }
 }

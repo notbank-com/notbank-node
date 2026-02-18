@@ -15,6 +15,7 @@ import { ServiceConnection } from "../core/serviceClient";
 import { VerificationService } from "./verificationService";
 import { RegisterService } from "./registerService";
 import { SavingsService } from "./savingsService";
+import { SubAccountService } from "./subAccountService";
 
 const DEFAULT_DOMAIN = "api.notbank.exchange";
 
@@ -104,5 +105,8 @@ export class HttpServiceFactory {
   }
   newSavingsService(): SavingsService {
     return new SavingsService(this.#httpConnection);
+  }
+  newSubAccountService(): SubAccountService {
+    return new SubAccountService(this.#httpConnection);
   }
 }

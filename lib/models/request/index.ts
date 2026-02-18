@@ -105,3 +105,5 @@ export * from "./verificationStatus";
 export * from "./depositToYield";
 export * from "./withdrawFromYield";
 export * from "./getProvinces";
+export * from "./createSubAccount";
+export * from "./getSubAccounts";

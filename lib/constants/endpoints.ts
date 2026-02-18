@@ -126,7 +126,10 @@ export enum Endpoint {
 
   // savings
   SAVINGS_DEPOSIT = "savings/deposit",
-  SAVINGS_WITHDRAW = "savings/withdraw"
+  SAVINGS_WITHDRAW = "savings/withdraw",
+
+  // subaccount
+  SUBACCOUNT = "subaccount",
 
 }
 
