@@ -129,8 +129,7 @@ export enum Endpoint {
   SAVINGS_WITHDRAW = "savings/withdraw",
 
   // subaccount
-  SUBACCOUNT = "subaccount",
-
+  SUBACCOUNT = "subaccounts",
 }
 
 export enum WebSocketEndpoint {
