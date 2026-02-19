@@ -5555,6 +5555,27 @@ var NotbankSdk = (() => {
     }
   };
 
+  // lib/services/subAccountService.ts
+  var SubAccountService = class {
+    constructor(connection) {
+      this.connection = connection;
+    }
+    createSubAccount(request) {
+      return this.connection.nbRequest(
+        "subaccounts" /* SUBACCOUNT */,
+        "POST" /* POST */,
+        request
+      );
+    }
+    getSubAccounts(request) {
+      return this.connection.nbRequest(
+        "subaccounts" /* SUBACCOUNT */,
+        "GET" /* GET */,
+        request
+      );
+    }
+  };
+
   // lib/services/httpServiceFactory.ts
   var DEFAULT_DOMAIN = "api.notbank.exchange";
   var _httpConnection;
@@ -5626,6 +5647,9 @@ var NotbankSdk = (() => {
     }
     newSavingsService() {
       return new SavingsService(__privateGet(this, _httpConnection));
+    }
+    newSubAccountService() {
+      return new SubAccountService(__privateGet(this, _httpConnection));
     }
   };
   _httpConnection = new WeakMap();
@@ -6574,6 +6598,9 @@ var NotbankSdk = (() => {
     newSavingsService() {
       return new SavingsService(this.serviceConnection);
     }
+    newSubAccountService() {
+      return new SubAccountService(this.serviceConnection);
+    }
   };
 
   // lib/services/notbankClient.ts
@@ -6595,6 +6622,7 @@ var NotbankSdk = (() => {
       this.registerService = params.registerService;
       this.verificationService = params.verificationService;
       this.savingsService = params.savingsService;
+      this.subAccountService = params.subAccountService;
       this.authenticateUser = params.authenticate;
       this.updateSessionToken = params.updateSessionToken;
       this.connect = params.connect;
@@ -6642,6 +6670,9 @@ var NotbankSdk = (() => {
     getSavingsService() {
       return this.savingsService;
     }
+    getSubAccountService() {
+      return this.subAccountService;
+    }
     getConnection() {
       return this.connection;
     }
@@ -6668,6 +6699,7 @@ var NotbankSdk = (() => {
         registerService: factory2.newRegisterService(),
         verificationService: factory2.newVerificationService(),
         savingsService: factory2.newSavingsService(),
+        subAccountService: factory2.newSubAccountService(),
         authenticate: (params) => factory2.authenticateUser(params),
         updateSessionToken: (token) => factory2.updateSessionToken(token),
         connect: () => Promise.resolve(null),
@@ -6696,6 +6728,7 @@ var NotbankSdk = (() => {
           authenticate: (params) => factory2.authenticateUser(params),
           updateSessionToken: (token) => factory2.updateSessionToken(token),
           savingsService: factory2.newSavingsService(),
+          subAccountService: factory2.newSubAccountService(),
           connect: () => factory2.connect(),
           close: () => factory2.close()
         }

@@ -13,6 +13,7 @@ import { ServiceConnection } from "../core/serviceClient.js";
 import { VerificationService } from "./verificationService.js";
 import { RegisterService } from "./registerService.js";
 import { SavingsService } from "./savingsService.js";
+import { SubAccountService } from "./subAccountService.js";
 export declare class HttpServiceFactory {
     #private;
     constructor(domain?: string);
@@ -37,4 +38,5 @@ export declare class HttpServiceFactory {
     newRegisterService(): RegisterService;
     newVerificationService(): VerificationService;
     newSavingsService(): SavingsService;
+    newSubAccountService(): SubAccountService;
 }

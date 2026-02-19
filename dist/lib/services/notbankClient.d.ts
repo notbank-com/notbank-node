@@ -14,6 +14,7 @@ import { SystemService } from "./systemService.js";
 import { TradingService } from "./tradingService.js";
 import { UserService } from "./userService.js";
 import { VerificationService } from "./verificationService.js";
+import { SubAccountService } from "./subAccountService.js";
 import { WalletService } from "./walletService.js";
 export declare class NotbankClient {
     connection: ServiceConnection;
@@ -32,6 +33,7 @@ export declare class NotbankClient {
     registerService: RegisterService;
     verificationService: VerificationService;
     savingsService: SavingsService;
+    subAccountService: SubAccountService;
     authenticateUser: (params: {
         ApiPublicKey: string;
         ApiSecretKey: string;
@@ -57,6 +59,7 @@ export declare class NotbankClient {
         registerService: RegisterService;
         verificationService: VerificationService;
         savingsService: SavingsService;
+        subAccountService: SubAccountService;
         authenticate: (authParams: {
             ApiPublicKey: string;
             ApiSecretKey: string;
@@ -85,5 +88,6 @@ export declare class NotbankClient {
     getRegisterService(): RegisterService;
     getVerificationService(): VerificationService;
     getSavingsService(): SavingsService;
+    getSubAccountService(): SubAccountService;
     getConnection(): ServiceConnection;
 }

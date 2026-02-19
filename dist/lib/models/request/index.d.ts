@@ -105,3 +105,5 @@ export * from "./verificationStatus.js";
 export * from "./depositToYield.js";
 export * from "./withdrawFromYield.js";
 export * from "./getProvinces.js";
+export * from "./createSubAccount.js";
+export * from "./getSubAccounts.js";

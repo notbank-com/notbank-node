@@ -115,6 +115,8 @@ export var Endpoint;
     // savings
     Endpoint["SAVINGS_DEPOSIT"] = "savings/deposit";
     Endpoint["SAVINGS_WITHDRAW"] = "savings/withdraw";
+    // subaccount
+    Endpoint["SUBACCOUNT"] = "subaccounts";
 })(Endpoint || (Endpoint = {}));
 export var WebSocketEndpoint;
 (function (WebSocketEndpoint) {

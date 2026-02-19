@@ -19,6 +19,7 @@ export class NotbankClient {
         this.registerService = params.registerService;
         this.verificationService = params.verificationService;
         this.savingsService = params.savingsService;
+        this.subAccountService = params.subAccountService;
         this.authenticateUser = params.authenticate;
         this.updateSessionToken = params.updateSessionToken;
         this.connect = params.connect;
@@ -66,6 +67,9 @@ export class NotbankClient {
     getSavingsService() {
         return this.savingsService;
     }
+    getSubAccountService() {
+        return this.subAccountService;
+    }
     getConnection() {
         return this.connection;
     }
@@ -90,6 +94,7 @@ NotbankClient.Factory = class Factory {
             registerService: factory.newRegisterService(),
             verificationService: factory.newVerificationService(),
             savingsService: factory.newSavingsService(),
+            subAccountService: factory.newSubAccountService(),
             authenticate: params => factory.authenticateUser(params),
             updateSessionToken: token => factory.updateSessionToken(token),
             connect: () => Promise.resolve(null),
@@ -117,6 +122,7 @@ NotbankClient.Factory = class Factory {
             authenticate: params => factory.authenticateUser(params),
             updateSessionToken: token => factory.updateSessionToken(token),
             savingsService: factory.newSavingsService(),
+            subAccountService: factory.newSubAccountService(),
             connect: () => factory.connect(),
             close: () => factory.close()
         });

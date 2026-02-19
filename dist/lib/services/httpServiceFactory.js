@@ -26,6 +26,7 @@ import { QuoteService } from "./quoteService.js";
 import { VerificationService } from "./verificationService.js";
 import { RegisterService } from "./registerService.js";
 import { SavingsService } from "./savingsService.js";
+import { SubAccountService } from "./subAccountService.js";
 const DEFAULT_DOMAIN = "api.notbank.exchange";
 export class HttpServiceFactory {
     constructor(domain) {
@@ -90,6 +91,9 @@ export class HttpServiceFactory {
     }
     newSavingsService() {
         return new SavingsService(__classPrivateFieldGet(this, _HttpServiceFactory_httpConnection, "f"));
+    }
+    newSubAccountService() {
+        return new SubAccountService(__classPrivateFieldGet(this, _HttpServiceFactory_httpConnection, "f"));
     }
 }
 _HttpServiceFactory_httpConnection = new WeakMap();

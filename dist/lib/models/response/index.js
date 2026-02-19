@@ -59,3 +59,4 @@ export * from "./institutionalMember.js";
 export * from "./verificationStatus.js";
 export * from "./enumType.js";
 export * from "./province.js";
+export * from "./subAccount.js";

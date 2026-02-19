@@ -20,6 +20,7 @@ import { QuoteService } from "./quoteService.js";
 import { RegisterService } from "./registerService.js";
 import { ReportService } from "./reportService.js";
 import { SavingsService } from "./savingsService.js";
+import { SubAccountService } from "./subAccountService.js";
 import { SubscriptionService } from "./subscriptionService.js";
 import { SystemService } from "./systemService.js";
 import { TradingService } from "./tradingService.js";
@@ -116,5 +117,8 @@ export class WebsocketServiceFactory {
     }
     newSavingsService() {
         return new SavingsService(this.serviceConnection);
+    }
+    newSubAccountService() {
+        return new SubAccountService(this.serviceConnection);
     }
 }
