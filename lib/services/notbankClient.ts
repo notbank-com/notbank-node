@@ -16,6 +16,7 @@ import { SystemService } from "./systemService";
 import { TradingService } from "./tradingService";
 import { UserService } from "./userService";
 import { VerificationService } from "./verificationService";
+import { SubAccountService } from "./subAccountService";
 import { WalletService } from "./walletService";
 import { WebsocketServiceFactory } from "./websocketServiceFactory";
 
@@ -36,6 +37,7 @@ export class NotbankClient {
   registerService: RegisterService
   verificationService: VerificationService
   savingsService: SavingsService
+  subAccountService: SubAccountService
   authenticateUser: (params: {
     ApiPublicKey: string,
     ApiSecretKey: string,
@@ -63,6 +65,7 @@ export class NotbankClient {
       registerService: RegisterService,
       verificationService: VerificationService,
       savingsService: SavingsService,
+      subAccountService: SubAccountService,
       authenticate: (authParams: {
         ApiPublicKey: string,
         ApiSecretKey: string,
@@ -89,6 +92,7 @@ export class NotbankClient {
     this.registerService = params.registerService
     this.verificationService = params.verificationService
     this.savingsService = params.savingsService;
+    this.subAccountService = params.subAccountService;
     this.authenticateUser = params.authenticate
     this.updateSessionToken = params.updateSessionToken
     this.connect = params.connect
@@ -116,6 +120,7 @@ export class NotbankClient {
         registerService: factory.newRegisterService(),
         verificationService: factory.newVerificationService(),
         savingsService: factory.newSavingsService(),
+        subAccountService: factory.newSubAccountService(),
         authenticate: params => factory.authenticateUser(params),
         updateSessionToken: token => factory.updateSessionToken(token),
         connect: () => Promise.resolve(null),
@@ -144,6 +149,7 @@ export class NotbankClient {
           authenticate: params => factory.authenticateUser(params),
           updateSessionToken: token => factory.updateSessionToken(token),
           savingsService: factory.newSavingsService(),
+          subAccountService: factory.newSubAccountService(),
           connect: () => factory.connect(),
           close: () => factory.close()
         }
@@ -206,6 +212,10 @@ export class NotbankClient {
 
   getSavingsService(): SavingsService {
     return this.savingsService
+  }
+
+  getSubAccountService(): SubAccountService {
+    return this.subAccountService
   }
 
   getConnection(): ServiceConnection {
