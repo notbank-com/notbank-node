@@ -8,17 +8,14 @@ import { GetUserPermissionsRequest } from "../../lib/models/request/getUserPermi
 import { HttpServiceFactory } from "../../lib/services/httpServiceFactory";
 import { NotbankClient } from "../../lib/services/notbankClient";
 import { WebsocketServiceFactory } from "../../lib/services/websocketServiceFactory";
+import { TestHelper } from "./TestHelper";
 
 describe("http user service 1", () => {
   const client = NotbankClient.Factory.createRestClient();
 
   before(async () => {
     // Autenticación previa a todas las pruebas en este bloque, http only
-    await client.authenticateUser({
-      ApiPublicKey: "ca1817fd1f2ec412ef3ab8086d5da0d3",
-      ApiSecretKey: "da365b63efebc9deda12ce854dc4846abb71d772e644b3812116dd016e9070e2",
-      UserId: "64",
-    });
+    await client.authenticateUser(TestHelper.getCredentials());
   });
 
   it("should complete authentication setup", () => {
@@ -33,11 +30,7 @@ describe("http user service 2", () => {
 
   before(async () => {
     // Autenticación previa a todas las pruebas en este bloque
-    await serviceFactory.authenticateUser({
-      ApiPublicKey: "ca1817fd1f2ec412ef3ab8086d5da0d3",
-      ApiSecretKey: "da365b63efebc9deda12ce854dc4846abb71d772e644b3812116dd016e9070e2",
-      UserId: "64",
-    });
+    await serviceFactory.authenticateUser(TestHelper.getCredentials());
   });
 
   const userService = serviceFactory.newUserService();
@@ -299,11 +292,7 @@ describe("websocket user service", () => {
   });
   before(async () => {
     await serviceFactory.connect();
-    await serviceFactory.authenticateUser({
-      ApiPublicKey: "ca1817fd1f2ec412ef3ab8086d5da0d3",
-      ApiSecretKey: "da365b63efebc9deda12ce854dc4846abb71d772e644b3812116dd016e9070e2",
-      UserId: "64",
-    });
+    await serviceFactory.authenticateUser(TestHelper.getCredentials());
   });
   after(() => {
     serviceFactory.close();

@@ -1,0 +1,27 @@
+export var ARProvince;
+(function (ARProvince) {
+    ARProvince[ARProvince["BUENOS_AIRES"] = 1] = "BUENOS_AIRES";
+    ARProvince[ARProvince["CATAMARCA"] = 10] = "CATAMARCA";
+    ARProvince[ARProvince["CHACO"] = 14] = "CHACO";
+    ARProvince[ARProvince["CHUBUT"] = 20] = "CHUBUT";
+    ARProvince[ARProvince["CIUDAD_AUTONOMA_DE_BUENOS_AIRES"] = 43] = "CIUDAD_AUTONOMA_DE_BUENOS_AIRES";
+    ARProvince[ARProvince["CORDOBA"] = 3] = "CORDOBA";
+    ARProvince[ARProvince["CORRIENTES"] = 15] = "CORRIENTES";
+    ARProvince[ARProvince["ENTRE_RIOS"] = 5] = "ENTRE_RIOS";
+    ARProvince[ARProvince["FORMOSA"] = 13] = "FORMOSA";
+    ARProvince[ARProvince["JUJUY"] = 11] = "JUJUY";
+    ARProvince[ARProvince["LA_PAMPA"] = 18] = "LA_PAMPA";
+    ARProvince[ARProvince["LA_RIOJA"] = 9] = "LA_RIOJA";
+    ARProvince[ARProvince["MENDOZA"] = 4] = "MENDOZA";
+    ARProvince[ARProvince["MISIONES"] = 16] = "MISIONES";
+    ARProvince[ARProvince["NEUQUEN"] = 19] = "NEUQUEN";
+    ARProvince[ARProvince["RIO_NEGRO"] = 21] = "RIO_NEGRO";
+    ARProvince[ARProvince["SALTA"] = 12] = "SALTA";
+    ARProvince[ARProvince["SAN_JUAN"] = 7] = "SAN_JUAN";
+    ARProvince[ARProvince["SAN_LUIS"] = 8] = "SAN_LUIS";
+    ARProvince[ARProvince["SANTA_CRUZ"] = 22] = "SANTA_CRUZ";
+    ARProvince[ARProvince["SANTA_FE"] = 2] = "SANTA_FE";
+    ARProvince[ARProvince["SANTIAGO_DEL_ESTERO"] = 6] = "SANTIAGO_DEL_ESTERO";
+    ARProvince[ARProvince["TIERRA_DEL_FUEGO_Y_ANTARTIDA_E_ISLAS_DEL_ATLANTICO_SUR"] = 23] = "TIERRA_DEL_FUEGO_Y_ANTARTIDA_E_ISLAS_DEL_ATLANTICO_SUR";
+    ARProvince[ARProvince["TUCUMAN"] = 17] = "TUCUMAN";
+})(ARProvince || (ARProvince = {}));

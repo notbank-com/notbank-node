@@ -9,7 +9,7 @@
     "lib": ["ES6", "DOM"],
     "forceConsistentCasingInFileNames": true,
   },
-  "include": ["lib"],
+  "include": ["lib/**/*","test/**/*"],
   "exclude": ["node_modules"],
   "tsc-alias": {
     "resolveFullPaths": true,

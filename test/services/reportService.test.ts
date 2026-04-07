@@ -10,17 +10,13 @@ import { DownloadDocumentRequest } from "../../lib/models/request/downloadDocume
 import { DownloadDocumentSliceRequest } from "../../lib/models/request/downloadDocumentSlice";
 import { ReportRequestStatus } from "../../lib/models/enums/reportRequestStatus";
 import { NotbankClient } from "../../lib/services/notbankClient";
+import { TestHelper } from "./TestHelper";
 
 describe("http report service", () => {
   const client = NotbankClient.Factory.createRestClient();
 
   before(async () => {
-    await client.authenticateUser({
-      ApiPublicKey: "ca1817fd1f2ec412ef3ab8086d5da0d3",
-      ApiSecretKey:
-        "da365b63efebc9deda12ce854dc4846abb71d772e644b3812116dd016e9070e2",
-      UserId: "64"
-    });
+    await client.authenticateUser(TestHelper.getCredentials());
   });
 
   const reportService = client.getReportService();

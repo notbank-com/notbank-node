@@ -11,7 +11,7 @@ export function getNonce(): string {
 export function sign(
   apiPublicKey: string,
   apiSecretKey: string,
-  userId: string,
+  userId: number,
   nonce: string
 ): string {
   var message = nonce + userId + apiPublicKey;

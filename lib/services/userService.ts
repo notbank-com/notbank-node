@@ -20,7 +20,7 @@ export class UserService {
    * https://apidoc.notbank.exchange/#getuseraccounts
    */
   getUserAccounts(
-    request: GetUserAccountsRequest
+    request: GetUserAccountsRequest = {}
   ): Promise<number[]> {
     const params = completeParams(request, this.OMS_ID);
     return this.connection.apRequest(

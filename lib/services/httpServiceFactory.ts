@@ -1,5 +1,5 @@
 import { getNonce, sign } from "../core/hmac";
-import { HttpConnection } from "../core/http/httpClient";
+import { HttpConnection } from "../core/http/httpConnection";
 import { AccountService } from "./accountService";
 import { AuthService } from "./authService";
 import { FeeService } from "./feeService";
@@ -12,7 +12,10 @@ import { UserService } from "./userService";
 import { WalletService } from "./walletService";
 import { QuoteService } from "./quoteService";
 import { ServiceConnection } from "../core/serviceClient";
-import { YieldService } from "./yieldService";
+import { VerificationService } from "./verificationService";
+import { RegisterService } from "./registerService";
+import { SavingsService } from "./savingsService";
+import { SubAccountService } from "./subAccountService";
 
 const DEFAULT_DOMAIN = "api.notbank.exchange";
 
@@ -27,7 +30,7 @@ export class HttpServiceFactory {
   authenticateUser(params: {
     ApiPublicKey: string;
     ApiSecretKey: string;
-    UserId: string;
+    UserId: number;
   }): Promise<void> {
     var nonce = getNonce();
     var signature = sign(
@@ -96,8 +99,16 @@ export class HttpServiceFactory {
     return new QuoteService(this.#httpConnection);
   }
 
-  newYieldService(): YieldService {
-    return new YieldService(this.#httpConnection);
+  newRegisterService(): RegisterService {
+    return new RegisterService(this.#httpConnection);
   }
-
+  newVerificationService(): VerificationService {
+    return new VerificationService(this.#httpConnection);
+  }
+  newSavingsService(): SavingsService {
+    return new SavingsService(this.#httpConnection);
+  }
+  newSubAccountService(): SubAccountService {
+    return new SubAccountService(this.#httpConnection);
+  }
 }

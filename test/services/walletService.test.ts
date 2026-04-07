@@ -1,24 +1,16 @@
 import assert from "assert";
 import "mocha";
 
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import { NotbankClient } from "../../lib/services/notbankClient";
+import { TestHelper } from "./TestHelper";
 
 describe("wallet service", () => {
   const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
-  var credentials = JSON.parse(fs.readFileSync('keys.json', 'utf-8')) as {
-    UserId: number;
-    AccountId: number;
-    ApiPublicKey: string;
-    ApiSecretKey: string;
-  }
+  var credentials = TestHelper.getCredentials();
 
   before(async () => {
-    await client.authenticateUser({
-      ApiPublicKey: credentials.ApiPublicKey,
-      ApiSecretKey: credentials.ApiSecretKey,
-      UserId: credentials.UserId.toString(),
-    });
+    await client.authenticateUser(credentials);
   });
 
   const service = client.getWalletService();
@@ -68,7 +60,7 @@ describe("wallet service", () => {
     const arBankAccoutnId = '4d677d9c-81e1-45d2-9903-43fd599b6599'
     it("should work", async () => {
       const account = await service.getClientBankAccount({ bankAccountId: arBankAccoutnId });
-      console.log(account)
+      console.log("account:", account)
       assert.ok(account)
     });
   });
@@ -83,9 +75,8 @@ describe("wallet service", () => {
 
   describe("deleteClientBankAccounts", () => {
     it("should work", async () => {
-      const bankAccountId = 'eddff990-0759-499a-8494-136f21671a6b'
+      const bankAccountId = '4172acac-f18e-41e2-8423-94e1c7feeebf'
       const account = await service.deleteClientBankAccount({ bankAccountId: bankAccountId });
-      console.log(account)
       assert.ok(account)
     });
   });

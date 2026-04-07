@@ -1,8 +1,9 @@
-export interface WithdrawFromYield {
-  account_id: number
+import { YieldProductType } from "../enums"
+
+export interface WithdrawFromYieldRequest {
   amount: number
   product_id: number
   currency: string
-  type: number
+  type: YieldProductType
   user_id?: string
 }

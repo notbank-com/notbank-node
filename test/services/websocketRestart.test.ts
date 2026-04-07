@@ -1,6 +1,7 @@
 import "mocha";
 import { NotbankClient } from "../../lib/services/notbankClient";
 import { SubscriptionService } from "../../lib/services/subscriptionService";
+import { TestHelper } from "./TestHelper";
 
 describe("websocket restarter", () => {
 
@@ -18,11 +19,7 @@ describe("websocket restarter", () => {
       withReconnect: true
     });
     await client.connect();
-    await client.authenticateUser({
-      ApiPublicKey: "59c8ca906c2fceda1ad02e1fab90f6d3",
-      ApiSecretKey: "4ab1fd70807645f9547eaa50fcdbc5b5",
-      UserId: "17",
-    });
+    await client.authenticateUser(TestHelper.getCredentials());
     subscriptionService = client.getSubscriptionService();
   });
 

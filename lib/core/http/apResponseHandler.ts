@@ -1,20 +1,19 @@
+import { AxiosResponse } from 'axios';
 import ErrorCode from "../../constants/errorCode";
 import {
   NotbankError,
   StandardResponse
 } from "../../models";
-import { Response } from 'node-fetch';
 
 export class ApResponseHandler {
-  public static async handle<T>(response: Response): Promise<T> {
-
-    if (response.status >= 400 || response.status < 200) {
+  public static async handle<T>(response: AxiosResponse<any>): Promise<T> {
+    if (response.status >= 300 || response.status < 200) {
       throw new Error(
         `http error (${response.status
-        }) not a successfull response. ${await ApResponseHandler.#getTextData(response)}`
+        }) not a successfull response. ${await response.data}`
       );
     }
-    var jsonResponse = await ApResponseHandler.#getJsonData(response)
+    var jsonResponse = ApResponseHandler.#getJsonData(response)
     if (!jsonResponse) {
       throw new NotbankError("http error. (status=" + response.status + ")", -1)
     }
@@ -28,17 +27,9 @@ export class ApResponseHandler {
     return jsonResponse as T;
   }
 
-  static async #getJsonData(response: Response): Promise<any> {
+  static #getJsonData(response: AxiosResponse<any>): any {
     try {
-      return await response.json();
-    } catch (err) {
-      return null;
-    }
-  }
-
-  static async #getTextData(response: Response): Promise<any> {
-    try {
-      return await response.text();
+      return response.data;
     } catch (err) {
       return null;
     }

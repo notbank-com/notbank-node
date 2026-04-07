@@ -2,16 +2,13 @@ import "mocha";
 
 import { NotbankClient } from "../../lib/services/notbankClient";
 import { OrderSide, OrderTypeInt, TimeInForce } from "../../lib/models";
+import { TestHelper } from "./TestHelper";
 
 describe("wallet service", () => {
   describe("getBanks", () => {
     it("should return a list of banks", async () => {
       const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
-      await client.authenticateUser({
-        ApiPublicKey: "aada11a919d9102f61fc1ca5a97ea578",
-        ApiSecretKey: "f2647a3c19fd8431be971d1d7b2101f9",
-        UserId: "9",
-      });
+      await client.authenticateUser(TestHelper.getCredentials());
       var accountId = 235;
 
       // get USDT user balance (also known as position)
@@ -39,7 +36,6 @@ describe("wallet service", () => {
       var randomSmallFraction = ((Math.random() * 90) + 10) / 1000
       var topBid = btcUsdtOrderbook.bids[0];
       var orderPrice = topBid.price + randomSmallFraction;
-      // TODO: handle tick size
       var orderQuantity = quantityToSpend / orderPrice;
 
 

@@ -10,20 +10,23 @@ import { FeeService } from "./feeService";
 import { InstrumentService } from "./instrumentService";
 import { ProductService } from "./productService";
 import { QuoteService } from "./quoteService";
+import { RegisterService } from "./registerService";
 import { ReportService } from "./reportService";
+import { SavingsService } from "./savingsService";
+import { SubAccountService } from "./subAccountService";
 import { SubscriptionService } from "./subscriptionService";
 import { SystemService } from "./systemService";
 import { TradingService } from "./tradingService";
 import { UserService } from "./userService";
+import { VerificationService } from "./verificationService";
 import { WalletService } from "./walletService";
-import { YieldService } from "./yieldService";
 
 
 export class WebsocketServiceFactory {
   private serviceConnection: ServiceConnection;
   private getReadyState: () => number
 
-  constructor(configuration?: WebsocketConnectionConfiguration) {
+  constructor(configuration: WebsocketConnectionConfiguration) {
     var connection = configuration?.withReconnect
       ? new RestartingWebsocketConnection({
         restarter: new Restarter({ connectionConfiguration: configuration || {} })
@@ -60,7 +63,7 @@ export class WebsocketServiceFactory {
   async authenticateUser(params: {
     ApiPublicKey: string;
     ApiSecretKey: string;
-    UserId: string;
+    UserId: number;
   }): Promise<void> {
     var nonce = getNonce();
     var signature = sign(
@@ -75,6 +78,10 @@ export class WebsocketServiceFactory {
       UserId: params.UserId,
       Nonce: nonce
     });
+  }
+
+  updateSessionToken(aptoken: string) {
+    return this.serviceConnection.updateSessionToken(aptoken)
   }
 
   getConnection(): ServiceConnection {
@@ -129,7 +136,19 @@ export class WebsocketServiceFactory {
     return new QuoteService(this.serviceConnection);
   }
 
-  newYieldService(): YieldService {
-    return new YieldService(this.serviceConnection);
+  newRegisterService(): RegisterService {
+    return new RegisterService(this.serviceConnection);
+  }
+
+  newVerificationService(): VerificationService {
+    return new VerificationService(this.serviceConnection);
+  }
+
+  newSavingsService(): SavingsService {
+    return new SavingsService(this.serviceConnection);
+  }
+
+  newSubAccountService(): SubAccountService {
+    return new SubAccountService(this.serviceConnection);
   }
 }

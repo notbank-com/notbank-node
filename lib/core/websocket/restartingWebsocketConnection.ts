@@ -12,9 +12,14 @@ export class RestartingWebsocketConnection implements ServiceConnection {
     this.restarter = params.restarter;
   }
 
-  updateSessionToken(sessionToken: string) {
-    throw new Error("Method not implemented.");
+  nbFormDataRequest<T1, T2>(endpoint: string, fields: [string, string | number | boolean][], files: [string, File][], message?: T1,): Promise<T2> {
+    throw new Error("websocket client does not support nb form data methods.");
   }
+
+  updateSessionToken(sessionToken: string) {
+    throw new Error("websocket client does not support updating session token.");
+  }
+
 
   apRequest<T1, T2>(
     endpoint: string,

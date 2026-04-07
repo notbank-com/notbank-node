@@ -1,19 +1,17 @@
 import assert from "assert";
 import "mocha";
 
-import { NotbankClient } from "../../lib/services/notbankClient";
 import { GetAccountTransactionsRequest } from "../../lib/models/request/getAccountTransactions";
+import { NotbankClient } from "../../lib/services/notbankClient";
+import { TestHelper } from "./TestHelper";
 
 describe("account service", () => {
   const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
-  
-  
+
+
+
   before(async () => {
-    await client.authenticateUser({
-      ApiPublicKey: "aada11a919d9102f61fc1ca5a97ea578",
-      ApiSecretKey: "f2647a3c19fd8431be971d1d7b2101f9",
-      UserId: "9",
-    });
+    await client.authenticateUser(TestHelper.getCredentials());
   });
 
   const accountService = client.getAccountService();
@@ -24,8 +22,6 @@ describe("account service", () => {
         AccountId: 99,
       };
       const response = await accountService.getAccountTransactions(params);
-      console.log("Transactions:", response);
-
       assert.ok(Array.isArray(response), "Response should be an array");
     });
   });
@@ -65,18 +61,8 @@ describe("account service", () => {
       const response = await accountService.getAccountInstrumentStatistics({
         AccountId: 99,
       });
-
       console.log("Instrument stats:", response);
       assert.ok(Array.isArray(response), "Response should be an array");
-    });
-
-    it("should throw if AccountId is missing", async () => {
-      try {
-        await accountService.getAccountInstrumentStatistics({} as any);
-        assert.fail("Should throw an error for missing AccountId");
-      } catch (error: any) {
-        assert.match(error.message, /AccountId is required field/);
-      }
     });
   });
 

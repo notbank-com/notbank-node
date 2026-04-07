@@ -27,8 +27,14 @@ export class NotbankError extends Error {
       )
     }
 
-    static createFromNbResponse(standardResponse: NbResponse): NotbankError {
-      var errMsg = "";
+    static createFromNbResponse(standardResponse: NbResponse, httpStatus: number): NotbankError {
+      var errMsg = `(http status=${httpStatus}) `;
+      if (standardResponse.status) {
+        errMsg += `(status=${standardResponse.status}) `;
+      }
+      if (standardResponse.code) {
+        errMsg += `(code=${standardResponse.code}) `;
+      }
       if (standardResponse.message) {
         errMsg += standardResponse.message;
         if (!standardResponse.message.endsWith(".")) {
@@ -41,9 +47,7 @@ export class NotbankError extends Error {
           errMsg += ".";
         }
       }
-
-      return new NotbankError(errMsg, -1,
-      )
+      return new NotbankError(errMsg, -1)
     }
   }
 }

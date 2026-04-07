@@ -1,15 +1,15 @@
 {
   "name": "notbank",
-  "version": "2.4.0-alpha",
+  "version": "2.9.0-alpha",
   "description": "The Notbank for Node.js",
   "homepage": "https://notbank.exchange",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "type": "module",
   "engines": {
     "node": ">=14.21.3"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register 'test/**/*.ts'",
+    "test": "npm run build:node; mocha 'dist/test/**/*.js'",
     "build": "npm run build:clean && npm run build:node && npm run build:bundle",
     "build:node": "tsc && tsc-alias",
     "build:bundle": "node build-bundle.cjs",
@@ -40,7 +40,8 @@
   "author": "Ismael Verdugo Zambra - Marcelo De La Barrera",
   "license": "Apache-2.0",
   "dependencies": {
-    "node-fetch": "^2.7.0",
+    "axios": "^1.13.2",
+    "formdata-node": "^6.0.3",
     "universal-websocket-client": "^1.0.2"
   },
   "devDependencies": {
@@ -49,9 +50,11 @@
     "esbuild": "^0.25.4",
     "mocha": "^10.8.2",
     "prettier": "3.5.3",
+    "ts-mocha": "^11.1.0",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.16",
-    "typescript": "^5.7.3"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3"
   },
   "bugs": {
     "url": "https://github.com/notbank-exchange/notbank-node/issues"

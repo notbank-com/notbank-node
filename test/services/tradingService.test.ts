@@ -5,6 +5,7 @@ import { OrderSide } from "../../lib/models/enums/orderSide";
 import { OrderTypeInt } from "../../lib/models/enums/orderType";
 import { TimeInForce } from "../../lib/models/enums/timeInForce";
 import { NotbankClient } from "../../lib/services/notbankClient";
+import { TestHelper } from "./TestHelper";
 
 describe("http trading service", () => {
   const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange")
@@ -12,11 +13,7 @@ describe("http trading service", () => {
 
   before(async () => {
     // Autenticación previa a todas las pruebas en este bloque, http only
-    await client.authenticateUser({
-      ApiPublicKey: "ca1817fd1f2ec412ef3ab8086d5da0d3",
-      ApiSecretKey: "da365b63efebc9deda12ce854dc4846abb71d772e644b3812116dd016e9070e2",
-      UserId: "64",
-    });
+    await client.authenticateUser(TestHelper.getCredentials());
   });
 
   const tradingService = client.getTradingService();
@@ -72,6 +69,14 @@ describe("http trading service", () => {
       assert.ok(orderbook)
       assert.equal(orderbook.asks.length, 5)
       assert.equal(orderbook.bids.length, 5)
+    });
+  });
+
+  describe("GetLevel1Summary", () => {
+    it("should throw an error for missing required parameters", async () => {
+      var response = await tradingService.getLevel1Summary()
+      assert.ok(response)
+      console.log(response)
     });
   });
 });

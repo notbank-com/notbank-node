@@ -8,14 +8,17 @@ import { HttpServiceFactory } from "./httpServiceFactory";
 import { InstrumentService } from "./instrumentService";
 import { ProductService } from "./productService";
 import { QuoteService } from "./quoteService";
+import { RegisterService } from "./registerService";
 import { ReportService } from "./reportService";
+import { SavingsService } from "./savingsService";
+import { SubAccountService } from "./subAccountService";
 import { SubscriptionService } from "./subscriptionService";
 import { SystemService } from "./systemService";
 import { TradingService } from "./tradingService";
 import { UserService } from "./userService";
+import { VerificationService } from "./verificationService";
 import { WalletService } from "./walletService";
 import { WebsocketServiceFactory } from "./websocketServiceFactory";
-import { YieldService } from "./yieldService";
 
 const DEFAULT_DOMAIN = "api.notbank.exchange";
 
@@ -33,12 +36,16 @@ export class NotbankClient {
   userService: UserService
   walletService: WalletService
   quoteService: QuoteService
-  yieldService: YieldService
+  registerService: RegisterService
+  verificationService: VerificationService
+  savingsService: SavingsService
+  subAccountService: SubAccountService
   authenticateUser: (params: {
     ApiPublicKey: string,
     ApiSecretKey: string,
-    UserId: string,
+    UserId: number,
   }) => Promise<void>
+  updateSessionToken: (token: string) => void
   connect: () => Promise<void>
   close: () => Promise<void>
 
@@ -57,12 +64,16 @@ export class NotbankClient {
       userService: UserService,
       walletService: WalletService,
       quoteService: QuoteService,
-      yieldService: YieldService,
+      registerService: RegisterService,
+      verificationService: VerificationService,
+      savingsService: SavingsService,
+      subAccountService: SubAccountService,
       authenticate: (authParams: {
         ApiPublicKey: string,
         ApiSecretKey: string,
-        UserId: string,
+        UserId: number,
       }) => Promise<void>,
+      updateSessionToken: (token: string) => void,
       connect: () => Promise<void>,
       close: () => Promise<void>,
     }
@@ -80,15 +91,19 @@ export class NotbankClient {
     this.userService = params.userService
     this.walletService = params.walletService
     this.quoteService = params.quoteService
-    this.yieldService = params.yieldService
+    this.registerService = params.registerService
+    this.verificationService = params.verificationService
+    this.savingsService = params.savingsService;
+    this.subAccountService = params.subAccountService;
     this.authenticateUser = params.authenticate
+    this.updateSessionToken = params.updateSessionToken
     this.connect = params.connect
     this.close = params.close
   }
 
 
   static Factory = class Factory {
-    static createRestClient(domain: string = DEFAULT_DOMAIN) {
+    static createRestClient(domain?: string) {
       var factory = new HttpServiceFactory(domain)
       return new NotbankClient({
         connection: factory.getConnection(),
@@ -104,13 +119,17 @@ export class NotbankClient {
         userService: factory.newUserService(),
         walletService: factory.newWalletService(),
         quoteService: factory.newQuoteService(),
-        yieldService: factory.newYieldService(),
+        registerService: factory.newRegisterService(),
+        verificationService: factory.newVerificationService(),
+        savingsService: factory.newSavingsService(),
+        subAccountService: factory.newSubAccountService(),
         authenticate: params => factory.authenticateUser(params),
+        updateSessionToken: token => factory.updateSessionToken(token),
         connect: () => Promise.resolve(undefined),
         close: () => Promise.resolve(undefined)
       })
     }
-    static createWebsocketClient(configuration?: WebsocketConnectionConfiguration) {
+    static createWebsocketClient(configuration: WebsocketConnectionConfiguration) {
       var factory = new WebsocketServiceFactory(configuration)
       return new NotbankClient(
         {
@@ -127,8 +146,12 @@ export class NotbankClient {
           userService: factory.newUserService(),
           walletService: factory.newWalletService(),
           quoteService: factory.newQuoteService(),
-          yieldService: factory.newYieldService(),
+          registerService: factory.newRegisterService(),
+          verificationService: factory.newVerificationService(),
           authenticate: params => factory.authenticateUser(params),
+          updateSessionToken: token => factory.updateSessionToken(token),
+          savingsService: factory.newSavingsService(),
+          subAccountService: factory.newSubAccountService(),
           connect: () => factory.connect(),
           close: () => factory.close()
         }
@@ -179,6 +202,22 @@ export class NotbankClient {
 
   getQuoteService(): QuoteService {
     return this.quoteService
+  }
+
+  getRegisterService(): RegisterService {
+    return this.registerService
+  }
+
+  getVerificationService(): VerificationService {
+    return this.verificationService
+  }
+
+  getSavingsService(): SavingsService {
+    return this.savingsService
+  }
+
+  getSubAccountService(): SubAccountService {
+    return this.subAccountService
   }
 
   getConnection(): ServiceConnection {

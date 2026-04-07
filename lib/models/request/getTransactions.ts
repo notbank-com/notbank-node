@@ -1,4 +1,5 @@
-import { WalletTransactionSubType, WalletTransactionType } from "../enums"
+import { IntTransactionSubType } from "../enums/intTransactionSubType"
+import { IntTransactionType } from "../enums/intTransactionType"
 
 export interface GetTransactionsRequest {
   from_date?: string
@@ -9,6 +10,6 @@ export interface GetTransactionsRequest {
   page_size?: number
   user_id?: string
   account_id?: string
-  type?: WalletTransactionType
-  sub_type?: WalletTransactionSubType
+  type?: IntTransactionType
+  sub_type?: IntTransactionSubType
 }

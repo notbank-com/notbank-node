@@ -1,7 +1,7 @@
+
 import { AuthenticateUserRequest } from "../models/request/authenticateUser";
 import { MessageFrame } from "./websocket/messageFrame";
 import { SubscriptionHandler } from "./websocket/subscriptionHandler";
-
 export interface ServiceConnection {
   apRequest<T1, T2>(
     endpoint: string,
@@ -14,7 +14,14 @@ export interface ServiceConnection {
     message?: T1,
     paged?: boolean,
   ): Promise<T2>;
+  nbFormDataRequest<T1, T2>(
+    endpoint: string,
+    fields: [string, string | number | boolean][],
+    files: [string, File][],
+    message?: T1,
+  ): Promise<T2>;
   authenticateUser(params: AuthenticateUserRequest): Promise<void>;
+  updateSessionToken(sessionToken: string);
   subscribe<T>(
     endpoint: string,
     firstIdentifier: number | null,
@@ -31,7 +38,7 @@ export interface ServiceConnection {
   ): Promise<void>;
   connect(): Promise<void>;
   close(): Promise<void>;
-  updateSessionToken(sessionToken: string);
+
 }
 
 export enum RequestType {

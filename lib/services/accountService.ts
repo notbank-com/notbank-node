@@ -64,7 +64,7 @@ export class AccountService {
    * https://apidoc.notbank.exchange/#getaccountinfo
    */
   public async getAccountInfo(
-    params: GetAccountInfoRequest
+    params: GetAccountInfoRequest = {}
   ): Promise<AccountInfo> {
     const paramsWithOMSId = completeParams(params, this.OMS_ID);
     return this.connection.apRequest(

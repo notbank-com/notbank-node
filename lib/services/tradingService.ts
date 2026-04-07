@@ -219,14 +219,15 @@ export class TradingService {
    * https://apidoc.notbank.exchange/#getlevel1summary
    */
   async getLevel1Summary(
-    request: GetLevel1SummaryRequest,
+    request: GetLevel1SummaryRequest = {},
   ): Promise<Level1Summary[]> {
     const paramsWithOMSId = completeParams(request, this.OMS_ID);
-    return this.connection.apRequest(
+    const response = (await this.connection.apRequest(
       Endpoint.GET_LEVEL1_SUMMARY,
       RequestType.POST,
       paramsWithOMSId,
-    )
+    ) as string[])
+    return response.map(summary => JSON.parse(summary) as Level1Summary)
   }
 
   /**
