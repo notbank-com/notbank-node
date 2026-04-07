@@ -48,3 +48,4 @@ export * from "./withdrawTemplateType";
 export * from "./walletTransactionType";
 export * from "./walletTransactionSubType";
 export * from "./FiatDepositPaymentMethod";
+export * from "./FiatWithdrawPaymentMethod";
