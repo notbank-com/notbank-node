@@ -1,4 +1,5 @@
-import { IntTransactionSubType, IntTransactionType } from "../enums/index.js";
+import { IntTransactionSubType } from "../enums/intTransactionSubType.js";
+import { IntTransactionType } from "../enums/intTransactionType.js";
 export interface GetTransactionsRequest {
     from_date?: string;
     to_date?: string;

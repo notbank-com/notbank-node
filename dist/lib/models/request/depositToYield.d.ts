@@ -1,8 +1,8 @@
-import { YieldProduct } from "../enums/index.js";
+import { YieldProductType } from "../enums/index.js";
 export interface DepositToYieldRequest {
     amount: number | string;
     product_id: number;
     currency: string;
-    type: YieldProduct;
+    type: YieldProductType;
     user_id?: string;
 }

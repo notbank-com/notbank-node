@@ -113,6 +113,7 @@ export var Endpoint;
     Endpoint["VERIFICATION_STATUS"] = "account/verification/status";
     Endpoint["VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES"] = "account/verification/institutional/members/types";
     // savings
+    Endpoint["YIELD_PRODUCTS"] = "yield/products";
     Endpoint["SAVINGS_DEPOSIT"] = "savings/deposit";
     Endpoint["SAVINGS_WITHDRAW"] = "savings/withdraw";
     // subaccount

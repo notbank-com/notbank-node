@@ -192,6 +192,16 @@ describe("wallet service", () => {
     });
   });
 
+  describe("getOneStepWithdraw", () => {
+    it("should not reject", async () => {
+      await assert.doesNotReject(async () => {
+        await service.getOneStepWithdraw({
+          account_id: 235,
+        });
+      });
+    });
+  });
+
   describe("createCryptoWithdraw", () => {
     it("should work", async () => {
       const response = await service.createCryptoWithdraw({

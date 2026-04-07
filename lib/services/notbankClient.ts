@@ -129,7 +129,7 @@ export class NotbankClient {
         close: () => Promise.resolve(undefined)
       })
     }
-    static createWebsocketClient(configuration: WebsocketConnectionConfiguration) {
+    static createWebsocketClient(configuration?: WebsocketConnectionConfiguration) {
       var factory = new WebsocketServiceFactory(configuration)
       return new NotbankClient(
         {

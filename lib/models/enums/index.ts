@@ -45,8 +45,10 @@ export * from "./unsubscribeLevel2ErrorCode";
 export * from "./unsubscribeTradesError";
 export * from "./withdrawErrorCode";
 export * from "./withdrawTemplateType";
-export * from "./FiatDepositPaymentMethod";
-export * from "./FiatWithdrawPaymentMethod";
+export * from "./fiatDepositPaymentMethod";
+export * from "./fiatWithdrawPaymentMethod";
+export * from "./intTransactionType";
+export * from "./intTransactionSubType";
 export * from "./yieldProductType"
 export * from "./arProvince";
 export * from "./clComune";

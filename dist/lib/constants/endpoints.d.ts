@@ -98,6 +98,7 @@ export declare enum Endpoint {
     VERIFICATION_INSTITUTIONAL_DOCUMENTS = "account/verification/institutional/documents",
     VERIFICATION_STATUS = "account/verification/status",
     VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES = "account/verification/institutional/members/types",
+    YIELD_PRODUCTS = "yield/products",
     SAVINGS_DEPOSIT = "savings/deposit",
     SAVINGS_WITHDRAW = "savings/withdraw",
     SUBACCOUNT = "subaccounts"

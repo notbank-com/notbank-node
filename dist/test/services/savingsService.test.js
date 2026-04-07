@@ -9,18 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import assert from "assert";
 import "mocha";
-import { YieldProduct } from "../../lib/models/enums/index.js";
+import { YieldProductType } from "../../lib/models/enums/index.js";
 import { NotbankClient } from "../../lib/services/notbankClient.js";
+import { TestHelper } from "./TestHelper.js";
 describe("savings service", () => {
     const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
+    before(() => __awaiter(void 0, void 0, void 0, function* () {
+        yield client.authenticateUser(TestHelper.getCredentials());
+    }));
     client.updateSessionToken("e613604a-4359-cded-096f-0f343674b9ae");
+    describe.only("getYieldProducts", () => {
+        it("should get yield products", () => __awaiter(void 0, void 0, void 0, function* () {
+            const response = yield client.getSavingsService().getYieldProducts();
+            console.log("transaction id:", response);
+            assert.ok(response, "Response should not be null");
+        }));
+    });
     describe("depositToYield", () => {
         it("should deposit to yield", () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield client.getSavingsService().depositToYield({
                 amount: 10,
                 product_id: 5,
                 currency: "USDT",
-                type: YieldProduct.VARIABLE
+                type: YieldProductType.VARIABLE
             });
             console.log("transaction id:", response);
             assert.ok(response, "Response should not be null");
@@ -32,7 +43,7 @@ describe("savings service", () => {
                 amount: 10,
                 product_id: 5,
                 currency: "USDT",
-                type: YieldProduct.VARIABLE
+                type: YieldProductType.VARIABLE
             });
             console.log("transaction id:", response);
             assert.ok(response, "Response should not be null");

@@ -1,4 +1,5 @@
-import { WalletTransactionSubType, WalletTransactionType } from "../enums"
+import { IntTransactionSubType } from "../enums/intTransactionSubType"
+import { IntTransactionType } from "../enums/intTransactionType"
 
 export interface Transaction {
   id: string
@@ -13,9 +14,9 @@ export interface Transaction {
   balance: number
   address: string
   hash: string
-  type: WalletTransactionType
+  type: IntTransactionType
   type_display: number
-  sub_type: WalletTransactionSubType
+  sub_type: IntTransactionSubType
   sub_type_display: number
   status: number
   status_display: string

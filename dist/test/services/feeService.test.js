@@ -28,7 +28,7 @@ describe("fee service", () => {
         }));
     });
     describe("getWithdrawFee", () => {
-        it.only("success response", () => __awaiter(void 0, void 0, void 0, function* () {
+        it("success response", () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield client.getFeeService().getWithdrawFee({
                 AccountId: 12,
                 Amount: 200,

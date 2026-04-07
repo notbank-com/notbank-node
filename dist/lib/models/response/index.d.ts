@@ -55,6 +55,7 @@ export * from "./userRegistration.js";
 export * from "./webAuthenticateUser.js";
 export * from "./withdrawTemplate.js";
 export * from "./withdrawTicket.js";
+export * from "./yieldProduct.js";
 export * from "./institutionalMember.js";
 export * from "./verificationStatus.js";
 export * from "./enumType.js";

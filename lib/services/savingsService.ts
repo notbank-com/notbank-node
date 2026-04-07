@@ -1,6 +1,6 @@
 import { Endpoint } from "../constants/endpoints";
 import { RequestType, ServiceConnection } from "../core/serviceClient";
-import { YieldProductType } from "../models";
+import { YieldProduct, YieldProductType } from "../models";
 import { DepositToYieldRequest, WithdrawFromYieldRequest } from "../models/request";
 
 export class SavingsService {
@@ -10,14 +10,13 @@ export class SavingsService {
     this.connection = connection;
   }
 
-
   /**
    * https://apidoc.notbank.exchange/#getyieldproducts
    */
-  getYieldProducts(): Promise<YieldProductType[]> {
+  getYieldProducts(): Promise<YieldProduct[]> {
     return this.connection.nbRequest(
       Endpoint.YIELD_PRODUCTS,
-      RequestType.GET
+      RequestType.POST
     );
   }
 

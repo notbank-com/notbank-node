@@ -44,15 +44,15 @@ export class WebsocketConnection {
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             this.websocket = new WebSocket("wss://" + this.domain + "/wsgateway");
-            this.websocket.onopen = event => { var _a, _b; return (_b = (_a = this.hooks).onOpen) === null || _b === void 0 ? void 0 : _b.call(_a, event); };
-            this.websocket.onclose = event => { var _a, _b; return (_b = (_a = this.hooks).onClose) === null || _b === void 0 ? void 0 : _b.call(_a, event); };
-            this.websocket.onerror = event => { var _a, _b; return (_b = (_a = this.hooks).onError) === null || _b === void 0 ? void 0 : _b.call(_a, event); };
-            this.websocket.addEventListener("message", event => {
+            this.websocket.onopen = (event) => { var _a, _b; return (_b = (_a = this.hooks).onOpen) === null || _b === void 0 ? void 0 : _b.call(_a, event); };
+            this.websocket.onclose = (event) => { var _a, _b; return (_b = (_a = this.hooks).onClose) === null || _b === void 0 ? void 0 : _b.call(_a, event); };
+            this.websocket.onerror = (event) => { var _a, _b; return (_b = (_a = this.hooks).onError) === null || _b === void 0 ? void 0 : _b.call(_a, event); };
+            this.websocket.addEventListener("message", (event) => {
                 const messageFrame = JSON.parse(event.data);
                 __classPrivateFieldGet(this, _WebsocketConnection_instances, "m", _WebsocketConnection_handleMessage).call(this, messageFrame);
             });
-            this.websocket.addEventListener("message", event => { var _a, _b; return (_b = (_a = this.hooks).onMessage) === null || _b === void 0 ? void 0 : _b.call(_a, event); });
-            return new Promise((resolve, _) => this.websocket.addEventListener("open", _ => resolve()));
+            this.websocket.addEventListener("message", (event) => { var _a, _b; return (_b = (_a = this.hooks).onMessage) === null || _b === void 0 ? void 0 : _b.call(_a, event); });
+            return new Promise((resolve, _) => this.websocket.addEventListener("open", (_) => resolve()));
         });
     }
     close() {
