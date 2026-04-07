@@ -53,4 +53,4 @@ export * from "./transactionEvent";
 export * from "./webAuthenticateUser";
 export * from "./withdrawTemplate";
 export * from "./withdrawTicket";
-
+export * from "./yieldProduct";

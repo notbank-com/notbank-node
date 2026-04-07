@@ -12,6 +12,7 @@ import { UserService } from "./userService";
 import { WalletService } from "./walletService";
 import { QuoteService } from "./quoteService";
 import { ServiceConnection } from "../core/serviceClient";
+import { YieldService } from "./yieldService";
 
 const DEFAULT_DOMAIN = "api.notbank.exchange";
 
@@ -90,7 +91,13 @@ export class HttpServiceFactory {
   newWalletService(): WalletService {
     return new WalletService(this.#httpConnection);
   }
+
   newQuoteService(): QuoteService {
     return new QuoteService(this.#httpConnection);
   }
+
+  newYieldService(): YieldService {
+    return new YieldService(this.#httpConnection);
+  }
+
 }

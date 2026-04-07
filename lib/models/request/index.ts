@@ -92,3 +92,5 @@ export * from "./unsubscribeTrades";
 export * from "./updateOneStepWithdraw";
 export * from "./webAuthenticateUser";
 export * from "./getOneStepWithdraw";
+export * from "./depositToYield";
+export * from "./withdrawFromYield";

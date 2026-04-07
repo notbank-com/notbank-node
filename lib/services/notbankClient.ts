@@ -1,4 +1,5 @@
-import { WebsocketHooks } from "../core/websocket/websocketHooks";
+import { ServiceConnection } from "../core/serviceClient";
+import { WebsocketConnectionConfiguration } from "../core/websocket/websocketConnectionConfiguration";
 import { NotbankError } from "../models";
 import { AccountService } from "./accountService";
 import { AuthService } from "./authService";
@@ -6,16 +7,15 @@ import { FeeService } from "./feeService";
 import { HttpServiceFactory } from "./httpServiceFactory";
 import { InstrumentService } from "./instrumentService";
 import { ProductService } from "./productService";
+import { QuoteService } from "./quoteService";
 import { ReportService } from "./reportService";
 import { SubscriptionService } from "./subscriptionService";
 import { SystemService } from "./systemService";
 import { TradingService } from "./tradingService";
 import { UserService } from "./userService";
 import { WalletService } from "./walletService";
-import { QuoteService } from "./quoteService";
 import { WebsocketServiceFactory } from "./websocketServiceFactory";
-import { WebsocketConnectionConfiguration } from "../core/websocket/websocketConnectionConfiguration";
-import { ServiceConnection } from "../core/serviceClient";
+import { YieldService } from "./yieldService";
 
 const DEFAULT_DOMAIN = "api.notbank.exchange";
 
@@ -33,6 +33,7 @@ export class NotbankClient {
   userService: UserService
   walletService: WalletService
   quoteService: QuoteService
+  yieldService: YieldService
   authenticateUser: (params: {
     ApiPublicKey: string,
     ApiSecretKey: string,
@@ -56,6 +57,7 @@ export class NotbankClient {
       userService: UserService,
       walletService: WalletService,
       quoteService: QuoteService,
+      yieldService: YieldService,
       authenticate: (authParams: {
         ApiPublicKey: string,
         ApiSecretKey: string,
@@ -78,6 +80,7 @@ export class NotbankClient {
     this.userService = params.userService
     this.walletService = params.walletService
     this.quoteService = params.quoteService
+    this.yieldService = params.yieldService
     this.authenticateUser = params.authenticate
     this.connect = params.connect
     this.close = params.close
@@ -101,9 +104,10 @@ export class NotbankClient {
         userService: factory.newUserService(),
         walletService: factory.newWalletService(),
         quoteService: factory.newQuoteService(),
+        yieldService: factory.newYieldService(),
         authenticate: params => factory.authenticateUser(params),
-        connect: () => Promise.resolve(null),
-        close: () => Promise.resolve(null)
+        connect: () => Promise.resolve(undefined),
+        close: () => Promise.resolve(undefined)
       })
     }
     static createWebsocketClient(configuration?: WebsocketConnectionConfiguration) {
@@ -123,6 +127,7 @@ export class NotbankClient {
           userService: factory.newUserService(),
           walletService: factory.newWalletService(),
           quoteService: factory.newQuoteService(),
+          yieldService: factory.newYieldService(),
           authenticate: params => factory.authenticateUser(params),
           connect: () => factory.connect(),
           close: () => factory.close()

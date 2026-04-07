@@ -16,6 +16,7 @@ import { SystemService } from "./systemService";
 import { TradingService } from "./tradingService";
 import { UserService } from "./userService";
 import { WalletService } from "./walletService";
+import { YieldService } from "./yieldService";
 
 
 export class WebsocketServiceFactory {
@@ -126,5 +127,9 @@ export class WebsocketServiceFactory {
 
   newQuoteService(): QuoteService {
     return new QuoteService(this.serviceConnection);
+  }
+
+  newYieldService(): YieldService {
+    return new YieldService(this.serviceConnection);
   }
 }

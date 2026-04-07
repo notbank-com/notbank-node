@@ -105,6 +105,12 @@ export enum Endpoint {
   QUOTES = "quotes",
   QUOTES_DIRECT = "quotes/direct",
   QUOTES_INVERSE = "quotes/inverse",
+
+  // Yield
+  YIELD_PRODUCTS = "yield/products",
+  SAVINGS_DEPOSIT = "savings/deposit",
+  SAVINGS_WITHDRAW = "savings/withdraw",
+
 }
 
 export enum WebSocketEndpoint {
