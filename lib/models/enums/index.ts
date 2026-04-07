@@ -45,3 +45,5 @@ export * from "../response/verificationLevelProductConfig";
 export * from "./withdrawErrorCode";
 export * from "./withdrawFeeMessages";
 export * from "./withdrawTemplateType";
+export * from "./walletTransactionType";
+export * from "./walletTransactionSubType";
