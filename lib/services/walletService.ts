@@ -27,6 +27,7 @@ import { CurrencyNetworkTemplates } from "../models/response/networkTemplates";
 import { Transactions } from "../models/response/transaction";
 import { WhiteListedAddress } from "../models/response/whiteListedAddress";
 import { ResendVerificationCodeWhitelistedAddressRequest } from "../models/request/resendVerificationCodeWhitelistedAddress";
+import { GetOneStepWithdrawRequest } from "../models";
 
 export class WalletService {
   connection: ServiceConnection;
@@ -274,5 +275,17 @@ export class WalletService {
       RequestType.GET,
       request
     );
+  }
+
+  /**
+   * https://stg.apidoc.notbank.exchange/#getonestepwithdraw
+   */
+  async getOneStepWithdraw(request: GetOneStepWithdrawRequest): Promise<Boolean> {
+    const result = await this.#nbPagedRequest<GetOneStepWithdrawRequest, { enabled: boolean }>(
+      Endpoint.GET_TRANSACTIONS,
+      RequestType.GET,
+      request
+    );
+    return result.enabled;
   }
 }

@@ -91,3 +91,4 @@ export * from "./unsubscribeTicker";
 export * from "./unsubscribeTrades";
 export * from "./updateOneStepWithdraw";
 export * from "./webAuthenticateUser";
+export * from "./getOneStepWithdraw";
