@@ -212,12 +212,12 @@ export class WalletService {
    * https://apidoc.notbank.exchange/#createfiatdeposit
    */
   async createFiatDeposit(request: CreateFiatDepositRequest): Promise<string | undefined> {
-    const result = await this.connection.nbRequest<CreateFiatDepositRequest, { url?: string }>(
+    const result = await this.connection.nbRequest<CreateFiatDepositRequest, { url?: string, qr?: string }>(
       Endpoint.FIAT_DEPOSIT,
       RequestType.POST,
       request
     );
-    return result?.url;
+    return result?.url || result?.qr;
   }
 
   /**

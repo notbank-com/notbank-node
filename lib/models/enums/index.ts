@@ -47,3 +47,4 @@ export * from "./withdrawFeeMessages";
 export * from "./withdrawTemplateType";
 export * from "./walletTransactionType";
 export * from "./walletTransactionSubType";
+export * from "./FiatDepositPaymentMethod";
