@@ -19,7 +19,7 @@ import { ProductService } from "./productService.js";
 import { QuoteService } from "./quoteService.js";
 import { RegisterService } from "./registerService.js";
 import { ReportService } from "./reportService.js";
-import { SavingsService } from "./savingsService.js";
+import { YieldService } from "./yieldService.js";
 import { SubAccountService } from "./subAccountService.js";
 import { SubscriptionService } from "./subscriptionService.js";
 import { SystemService } from "./systemService.js";
@@ -115,8 +115,8 @@ export class WebsocketServiceFactory {
     newVerificationService() {
         return new VerificationService(this.serviceConnection);
     }
-    newSavingsService() {
-        return new SavingsService(this.serviceConnection);
+    newYieldService() {
+        return new YieldService(this.serviceConnection);
     }
     newSubAccountService() {
         return new SubAccountService(this.serviceConnection);

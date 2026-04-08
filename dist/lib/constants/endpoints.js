@@ -112,10 +112,10 @@ export var Endpoint;
     Endpoint["VERIFICATION_INSTITUTIONAL_DOCUMENTS"] = "account/verification/institutional/documents";
     Endpoint["VERIFICATION_STATUS"] = "account/verification/status";
     Endpoint["VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES"] = "account/verification/institutional/members/types";
-    // savings
+    // yield
     Endpoint["YIELD_PRODUCTS"] = "yield/products";
-    Endpoint["SAVINGS_DEPOSIT"] = "yield/deposit";
-    Endpoint["SAVINGS_WITHDRAW"] = "yield/withdraw";
+    Endpoint["YIELD_DEPOSIT"] = "yield/deposit";
+    Endpoint["YIELD_WITHDRAW"] = "yield/withdraw";
     // subaccount
     Endpoint["SUBACCOUNT"] = "subaccounts";
 })(Endpoint || (Endpoint = {}));

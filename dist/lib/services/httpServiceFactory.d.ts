@@ -12,7 +12,7 @@ import { QuoteService } from "./quoteService.js";
 import { ServiceConnection } from "../core/serviceClient.js";
 import { VerificationService } from "./verificationService.js";
 import { RegisterService } from "./registerService.js";
-import { SavingsService } from "./savingsService.js";
+import { YieldService } from "./yieldService.js";
 import { SubAccountService } from "./subAccountService.js";
 export declare class HttpServiceFactory {
     #private;
@@ -37,6 +37,6 @@ export declare class HttpServiceFactory {
     newQuoteService(): QuoteService;
     newRegisterService(): RegisterService;
     newVerificationService(): VerificationService;
-    newSavingsService(): SavingsService;
+    newYieldService(): YieldService;
     newSubAccountService(): SubAccountService;
 }

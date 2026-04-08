@@ -12,7 +12,7 @@ import "mocha";
 import { YieldProductType } from "../../lib/models/enums/index.js";
 import { NotbankClient } from "../../lib/services/notbankClient.js";
 import { TestHelper } from "./TestHelper.js";
-describe("savings service", () => {
+describe.only("yield service", () => {
     const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
     before(() => __awaiter(void 0, void 0, void 0, function* () {
         yield client.authenticateUser(TestHelper.getCredentials());
@@ -20,14 +20,14 @@ describe("savings service", () => {
     client.updateSessionToken("e613604a-4359-cded-096f-0f343674b9ae");
     describe("getYieldProducts", () => {
         it("should get yield products", () => __awaiter(void 0, void 0, void 0, function* () {
-            const response = yield client.getSavingsService().getYieldProducts();
+            const response = yield client.getYieldService().getYieldProducts();
             console.log("transaction id:", response);
             assert.ok(response, "Response should not be null");
         }));
     });
-    describe.only("depositToYield", () => {
+    describe("depositToYield", () => {
         it("should deposit to yield", () => __awaiter(void 0, void 0, void 0, function* () {
-            const response = yield client.getSavingsService().depositToYield({
+            const response = yield client.getYieldService().depositToYield({
                 account_id: 235,
                 amount: 10,
                 product_id: 5,
@@ -38,9 +38,9 @@ describe("savings service", () => {
             assert.ok(response, "Response should not be null");
         }));
     });
-    describe.only("withdrawFromYield", () => {
+    describe("withdrawFromYield", () => {
         it("should withdraw from yield", () => __awaiter(void 0, void 0, void 0, function* () {
-            const response = yield client.getSavingsService().withdrawFromYield({
+            const response = yield client.getYieldService().withdrawFromYield({
                 account_id: 235,
                 amount: 10,
                 product_id: 5,

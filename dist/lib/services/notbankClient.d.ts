@@ -8,7 +8,7 @@ import { ProductService } from "./productService.js";
 import { QuoteService } from "./quoteService.js";
 import { RegisterService } from "./registerService.js";
 import { ReportService } from "./reportService.js";
-import { SavingsService } from "./savingsService.js";
+import { YieldService } from "./yieldService.js";
 import { SubAccountService } from "./subAccountService.js";
 import { SubscriptionService } from "./subscriptionService.js";
 import { SystemService } from "./systemService.js";
@@ -32,7 +32,7 @@ export declare class NotbankClient {
     quoteService: QuoteService;
     registerService: RegisterService;
     verificationService: VerificationService;
-    savingsService: SavingsService;
+    yieldService: YieldService;
     subAccountService: SubAccountService;
     authenticateUser: (params: {
         ApiPublicKey: string;
@@ -58,7 +58,7 @@ export declare class NotbankClient {
         quoteService: QuoteService;
         registerService: RegisterService;
         verificationService: VerificationService;
-        savingsService: SavingsService;
+        yieldService: YieldService;
         subAccountService: SubAccountService;
         authenticate: (authParams: {
             ApiPublicKey: string;
@@ -87,7 +87,7 @@ export declare class NotbankClient {
     getQuoteService(): QuoteService;
     getRegisterService(): RegisterService;
     getVerificationService(): VerificationService;
-    getSavingsService(): SavingsService;
+    getYieldService(): YieldService;
     getSubAccountService(): SubAccountService;
     getConnection(): ServiceConnection;
 }
