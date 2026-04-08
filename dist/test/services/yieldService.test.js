@@ -12,7 +12,7 @@ import "mocha";
 import { YieldProductType } from "../../lib/models/enums/index.js";
 import { NotbankClient } from "../../lib/services/notbankClient.js";
 import { TestHelper } from "./TestHelper.js";
-describe.only("yield service", () => {
+describe("yield service", () => {
     const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
     before(() => __awaiter(void 0, void 0, void 0, function* () {
         yield client.authenticateUser(TestHelper.getCredentials());

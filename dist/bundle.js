@@ -172,6 +172,8 @@ var NotbankSdk = (() => {
     FeeCalcType: () => FeeCalcType,
     FeeProductType: () => FeeProductType,
     FeeType: () => FeeType,
+    FiatDepositPaymentMethod: () => FiatDepositPaymentMethod,
+    FiatWithdrawPaymentMethod: () => FiatWithdrawPaymentMethod,
     Gender: () => Gender,
     InstitutionalMember: () => InstitutionalMember,
     InstrumentStateArgument: () => InstrumentStateArgument,
@@ -211,7 +213,7 @@ var NotbankSdk = (() => {
     UnsubscriptionResponse: () => UnsubscriptionResponse,
     WithdrawErrorCode: () => WithdrawErrorCode,
     WithdrawTemplateType: () => WithdrawTemplateType,
-    YieldProduct: () => YieldProduct,
+    YieldProductType: () => YieldProductType,
     orderbookFromRaw: () => orderbookFromRaw
   });
 
@@ -647,12 +649,73 @@ var NotbankSdk = (() => {
     return WithdrawTemplateType2;
   })(WithdrawTemplateType || {});
 
-  // lib/models/enums/yieldProduct.ts
-  var YieldProduct = /* @__PURE__ */ ((YieldProduct2) => {
-    YieldProduct2[YieldProduct2["STABLE"] = 0] = "STABLE";
-    YieldProduct2[YieldProduct2["VARIABLE"] = 1] = "VARIABLE";
-    return YieldProduct2;
-  })(YieldProduct || {});
+  // lib/models/enums/fiatDepositPaymentMethod.ts
+  var FiatDepositPaymentMethod = /* @__PURE__ */ ((FiatDepositPaymentMethod2) => {
+    FiatDepositPaymentMethod2[FiatDepositPaymentMethod2["MANUAL_BANK_TRANSFER"] = 1] = "MANUAL_BANK_TRANSFER";
+    FiatDepositPaymentMethod2[FiatDepositPaymentMethod2["VIRTUAL_WALLET"] = 3] = "VIRTUAL_WALLET";
+    FiatDepositPaymentMethod2[FiatDepositPaymentMethod2["QR_CODE"] = 4] = "QR_CODE";
+    FiatDepositPaymentMethod2[FiatDepositPaymentMethod2["ASSISTED_BANK_TRANSFER"] = 5] = "ASSISTED_BANK_TRANSFER";
+    FiatDepositPaymentMethod2[FiatDepositPaymentMethod2["CREDIT_DEBIT_CARD"] = 6] = "CREDIT_DEBIT_CARD";
+    FiatDepositPaymentMethod2[FiatDepositPaymentMethod2["CASH_OR_CARD"] = 7] = "CASH_OR_CARD";
+    return FiatDepositPaymentMethod2;
+  })(FiatDepositPaymentMethod || {});
+
+  // lib/models/enums/fiatWithdrawPaymentMethod.ts
+  var FiatWithdrawPaymentMethod = /* @__PURE__ */ ((FiatWithdrawPaymentMethod2) => {
+    FiatWithdrawPaymentMethod2[FiatWithdrawPaymentMethod2["BANK_TRANSFER"] = 1] = "BANK_TRANSFER";
+    FiatWithdrawPaymentMethod2[FiatWithdrawPaymentMethod2["VIRTUAL_WALLET"] = 3] = "VIRTUAL_WALLET";
+    return FiatWithdrawPaymentMethod2;
+  })(FiatWithdrawPaymentMethod || {});
+
+  // lib/models/enums/intTransactionType.ts
+  var IntTransactionType = /* @__PURE__ */ ((IntTransactionType2) => {
+    IntTransactionType2[IntTransactionType2["OTHER"] = 0] = "OTHER";
+    IntTransactionType2[IntTransactionType2["DEPOSIT"] = 1] = "DEPOSIT";
+    IntTransactionType2[IntTransactionType2["WITHDRAW"] = 2] = "WITHDRAW";
+    IntTransactionType2[IntTransactionType2["TRANSFER"] = 3] = "TRANSFER";
+    IntTransactionType2[IntTransactionType2["TRADE"] = 4] = "TRADE";
+    IntTransactionType2[IntTransactionType2["PAYMENT"] = 5] = "PAYMENT";
+    IntTransactionType2[IntTransactionType2["RECTIFICATION"] = 6] = "RECTIFICATION";
+    IntTransactionType2[IntTransactionType2["FEE"] = 7] = "FEE";
+    IntTransactionType2[IntTransactionType2["REVERSE"] = 8] = "REVERSE";
+    IntTransactionType2[IntTransactionType2["HOLD"] = 9] = "HOLD";
+    IntTransactionType2[IntTransactionType2["MARGIN"] = 10] = "MARGIN";
+    IntTransactionType2[IntTransactionType2["AIRDROP"] = 11] = "AIRDROP";
+    IntTransactionType2[IntTransactionType2["DISTRIBUTION"] = 12] = "DISTRIBUTION";
+    IntTransactionType2[IntTransactionType2["MIGRATION"] = 13] = "MIGRATION";
+    return IntTransactionType2;
+  })(IntTransactionType || {});
+
+  // lib/models/enums/intTransactionSubType.ts
+  var IntTransactionSubType = /* @__PURE__ */ ((IntTransactionSubType2) => {
+    IntTransactionSubType2[IntTransactionSubType2["OTHER"] = 0] = "OTHER";
+    IntTransactionSubType2[IntTransactionSubType2["PAYOUT"] = 1] = "PAYOUT";
+    IntTransactionSubType2[IntTransactionSubType2["PAYIN"] = 2] = "PAYIN";
+    IntTransactionSubType2[IntTransactionSubType2["DEPOSIT"] = 3] = "DEPOSIT";
+    IntTransactionSubType2[IntTransactionSubType2["WITHDRAW"] = 4] = "WITHDRAW";
+    IntTransactionSubType2[IntTransactionSubType2["BANK_TO_EXCHANGE"] = 5] = "BANK_TO_EXCHANGE";
+    IntTransactionSubType2[IntTransactionSubType2["EXCHANGE_TO_BANK"] = 6] = "EXCHANGE_TO_BANK";
+    IntTransactionSubType2[IntTransactionSubType2["TRADE"] = 7] = "TRADE";
+    IntTransactionSubType2[IntTransactionSubType2["PAYMENT"] = 8] = "PAYMENT";
+    IntTransactionSubType2[IntTransactionSubType2["SIMPLE"] = 9] = "SIMPLE";
+    IntTransactionSubType2[IntTransactionSubType2["RECTIFICATION"] = 10] = "RECTIFICATION";
+    IntTransactionSubType2[IntTransactionSubType2["TRANSFER"] = 11] = "TRANSFER";
+    IntTransactionSubType2[IntTransactionSubType2["HOLD"] = 12] = "HOLD";
+    IntTransactionSubType2[IntTransactionSubType2["MARGIN"] = 13] = "MARGIN";
+    IntTransactionSubType2[IntTransactionSubType2["AIRDROP"] = 14] = "AIRDROP";
+    IntTransactionSubType2[IntTransactionSubType2["ORDER"] = 15] = "ORDER";
+    IntTransactionSubType2[IntTransactionSubType2["DISTRIBUTION_ENTRY"] = 16] = "DISTRIBUTION_ENTRY";
+    IntTransactionSubType2[IntTransactionSubType2["MIGRATION"] = 17] = "MIGRATION";
+    IntTransactionSubType2[IntTransactionSubType2["MANUAL_ENTRY"] = 18] = "MANUAL_ENTRY";
+    return IntTransactionSubType2;
+  })(IntTransactionSubType || {});
+
+  // lib/models/enums/yieldProductType.ts
+  var YieldProductType = /* @__PURE__ */ ((YieldProductType2) => {
+    YieldProductType2[YieldProductType2["STABLE"] = 0] = "STABLE";
+    YieldProductType2[YieldProductType2["VARIABLE"] = 1] = "VARIABLE";
+    return YieldProductType2;
+  })(YieldProductType || {});
 
   // lib/models/enums/arProvince.ts
   var ARProvince = /* @__PURE__ */ ((ARProvince2) => {
@@ -1165,46 +1228,6 @@ var NotbankSdk = (() => {
     Profession2["MANAGER_OFFICIER"] = "manager_officier";
     return Profession2;
   })(Profession || {});
-
-  // lib/models/enums/intTransactionType.ts
-  var IntTransactionType = /* @__PURE__ */ ((IntTransactionType2) => {
-    IntTransactionType2[IntTransactionType2["OTHER"] = 0] = "OTHER";
-    IntTransactionType2[IntTransactionType2["DEPOSIT"] = 1] = "DEPOSIT";
-    IntTransactionType2[IntTransactionType2["WITHDRAW"] = 2] = "WITHDRAW";
-    IntTransactionType2[IntTransactionType2["TRANSFER"] = 3] = "TRANSFER";
-    IntTransactionType2[IntTransactionType2["TRADE"] = 4] = "TRADE";
-    IntTransactionType2[IntTransactionType2["PAYMENT"] = 5] = "PAYMENT";
-    IntTransactionType2[IntTransactionType2["RECTIFICATION"] = 6] = "RECTIFICATION";
-    IntTransactionType2[IntTransactionType2["FEE"] = 7] = "FEE";
-    IntTransactionType2[IntTransactionType2["REVERSE"] = 8] = "REVERSE";
-    IntTransactionType2[IntTransactionType2["HOLD"] = 9] = "HOLD";
-    IntTransactionType2[IntTransactionType2["MARGIN"] = 10] = "MARGIN";
-    IntTransactionType2[IntTransactionType2["AIRDROP"] = 11] = "AIRDROP";
-    IntTransactionType2[IntTransactionType2["DISTRIBUTION"] = 12] = "DISTRIBUTION";
-    return IntTransactionType2;
-  })(IntTransactionType || {});
-
-  // lib/models/enums/intTransactionSubType.ts
-  var IntTransactionSubType = /* @__PURE__ */ ((IntTransactionSubType2) => {
-    IntTransactionSubType2[IntTransactionSubType2["OTHER"] = 0] = "OTHER";
-    IntTransactionSubType2[IntTransactionSubType2["PAYOUT"] = 1] = "PAYOUT";
-    IntTransactionSubType2[IntTransactionSubType2["PAYIN"] = 2] = "PAYIN";
-    IntTransactionSubType2[IntTransactionSubType2["DEPOSIT"] = 3] = "DEPOSIT";
-    IntTransactionSubType2[IntTransactionSubType2["WITHDRAW"] = 4] = "WITHDRAW";
-    IntTransactionSubType2[IntTransactionSubType2["BANK_TO_EXCHANGE"] = 5] = "BANK_TO_EXCHANGE";
-    IntTransactionSubType2[IntTransactionSubType2["EXCHANGE_TO_BANK"] = 6] = "EXCHANGE_TO_BANK";
-    IntTransactionSubType2[IntTransactionSubType2["TRADE"] = 7] = "TRADE";
-    IntTransactionSubType2[IntTransactionSubType2["PAYMENT"] = 8] = "PAYMENT";
-    IntTransactionSubType2[IntTransactionSubType2["SIMPLE"] = 9] = "SIMPLE";
-    IntTransactionSubType2[IntTransactionSubType2["RECTIFICATION"] = 10] = "RECTIFICATION";
-    IntTransactionSubType2[IntTransactionSubType2["TRANSFER"] = 11] = "TRANSFER";
-    IntTransactionSubType2[IntTransactionSubType2["HOLD"] = 12] = "HOLD";
-    IntTransactionSubType2[IntTransactionSubType2["MARGIN"] = 13] = "MARGIN";
-    IntTransactionSubType2[IntTransactionSubType2["AIRDROP"] = 14] = "AIRDROP";
-    IntTransactionSubType2[IntTransactionSubType2["ORDER"] = 15] = "ORDER";
-    IntTransactionSubType2[IntTransactionSubType2["DISTRIBUTION_ENTRY"] = 16] = "DISTRIBUTION_ENTRY";
-    return IntTransactionSubType2;
-  })(IntTransactionSubType || {});
 
   // lib/models/enums/quoteMode.ts
   var QuoteMode = /* @__PURE__ */ ((QuoteMode2) => {
@@ -5279,7 +5302,7 @@ var NotbankSdk = (() => {
           "POST" /* POST */,
           request
         );
-        return result == null ? void 0 : result.url;
+        return (result == null ? void 0 : result.url) || (result == null ? void 0 : result.qr);
       });
     }
     /**
@@ -5330,6 +5353,15 @@ var NotbankSdk = (() => {
      */
     getTransactions(request) {
       return __privateMethod(this, _WalletService_instances, nbPagedRequest_fn).call(this, "wallet/transactions" /* GET_TRANSACTIONS */, "GET" /* GET */, request);
+    }
+    /**
+     * https://stg.apidoc.notbank.exchange/#getonestepwithdraw
+     */
+    getOneStepWithdraw(request) {
+      return __async(this, null, function* () {
+        const result = yield __privateMethod(this, _WalletService_instances, nbPagedRequest_fn).call(this, "wallet/transactions" /* GET_TRANSACTIONS */, "GET" /* GET */, request);
+        return result.enabled;
+      });
     }
   };
   _WalletService_instances = new WeakSet();
@@ -5534,21 +5566,30 @@ var NotbankSdk = (() => {
     }
   };
 
-  // lib/services/savingsService.ts
-  var SavingsService = class {
+  // lib/services/yieldService.ts
+  var YieldService = class {
     constructor(connection) {
       this.connection = connection;
     }
+    /**
+     * https://apidoc.notbank.exchange/#getyieldproducts
+     */
+    getYieldProducts() {
+      return this.connection.nbRequest(
+        "yield/products" /* YIELD_PRODUCTS */,
+        "POST" /* POST */
+      );
+    }
     depositToYield(request) {
       return this.connection.nbRequest(
-        "savings/deposit" /* SAVINGS_DEPOSIT */,
+        "yield/deposit" /* YIELD_DEPOSIT */,
         "POST" /* POST */,
         request
       );
     }
     withdrawFromYield(request) {
       return this.connection.nbRequest(
-        "savings/withdraw" /* SAVINGS_WITHDRAW */,
+        "yield/withdraw" /* YIELD_WITHDRAW */,
         "POST" /* POST */,
         request
       );
@@ -5645,8 +5686,8 @@ var NotbankSdk = (() => {
     newVerificationService() {
       return new VerificationService(__privateGet(this, _httpConnection));
     }
-    newSavingsService() {
-      return new SavingsService(__privateGet(this, _httpConnection));
+    newYieldService() {
+      return new YieldService(__privateGet(this, _httpConnection));
     }
     newSubAccountService() {
       return new SubAccountService(__privateGet(this, _httpConnection));
@@ -6595,8 +6636,8 @@ var NotbankSdk = (() => {
     newVerificationService() {
       return new VerificationService(this.serviceConnection);
     }
-    newSavingsService() {
-      return new SavingsService(this.serviceConnection);
+    newYieldService() {
+      return new YieldService(this.serviceConnection);
     }
     newSubAccountService() {
       return new SubAccountService(this.serviceConnection);
@@ -6621,7 +6662,7 @@ var NotbankSdk = (() => {
       this.quoteService = params.quoteService;
       this.registerService = params.registerService;
       this.verificationService = params.verificationService;
-      this.savingsService = params.savingsService;
+      this.yieldService = params.yieldService;
       this.subAccountService = params.subAccountService;
       this.authenticateUser = params.authenticate;
       this.updateSessionToken = params.updateSessionToken;
@@ -6667,8 +6708,8 @@ var NotbankSdk = (() => {
     getVerificationService() {
       return this.verificationService;
     }
-    getSavingsService() {
-      return this.savingsService;
+    getYieldService() {
+      return this.yieldService;
     }
     getSubAccountService() {
       return this.subAccountService;
@@ -6698,12 +6739,12 @@ var NotbankSdk = (() => {
         quoteService: factory2.newQuoteService(),
         registerService: factory2.newRegisterService(),
         verificationService: factory2.newVerificationService(),
-        savingsService: factory2.newSavingsService(),
+        yieldService: factory2.newYieldService(),
         subAccountService: factory2.newSubAccountService(),
         authenticate: (params) => factory2.authenticateUser(params),
         updateSessionToken: (token) => factory2.updateSessionToken(token),
-        connect: () => Promise.resolve(null),
-        close: () => Promise.resolve(null)
+        connect: () => Promise.resolve(void 0),
+        close: () => Promise.resolve(void 0)
       });
     }
     static createWebsocketClient(configuration) {
@@ -6727,7 +6768,7 @@ var NotbankSdk = (() => {
           verificationService: factory2.newVerificationService(),
           authenticate: (params) => factory2.authenticateUser(params),
           updateSessionToken: (token) => factory2.updateSessionToken(token),
-          savingsService: factory2.newSavingsService(),
+          yieldService: factory2.newYieldService(),
           subAccountService: factory2.newSubAccountService(),
           connect: () => factory2.connect(),
           close: () => factory2.close()
