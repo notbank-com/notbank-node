@@ -1,6 +1,7 @@
 import { NotbankError } from "../models/index.js";
 import { HttpServiceFactory } from "./httpServiceFactory.js";
 import { WebsocketServiceFactory } from "./websocketServiceFactory.js";
+const DEFAULT_DOMAIN = "api.notbank.exchange";
 export class NotbankClient {
     constructor(params) {
         this.connection = params.connection;
@@ -18,7 +19,7 @@ export class NotbankClient {
         this.quoteService = params.quoteService;
         this.registerService = params.registerService;
         this.verificationService = params.verificationService;
-        this.savingsService = params.savingsService;
+        this.yieldService = params.yieldService;
         this.subAccountService = params.subAccountService;
         this.authenticateUser = params.authenticate;
         this.updateSessionToken = params.updateSessionToken;
@@ -64,8 +65,8 @@ export class NotbankClient {
     getVerificationService() {
         return this.verificationService;
     }
-    getSavingsService() {
-        return this.savingsService;
+    getYieldService() {
+        return this.yieldService;
     }
     getSubAccountService() {
         return this.subAccountService;
@@ -93,12 +94,12 @@ NotbankClient.Factory = class Factory {
             quoteService: factory.newQuoteService(),
             registerService: factory.newRegisterService(),
             verificationService: factory.newVerificationService(),
-            savingsService: factory.newSavingsService(),
+            yieldService: factory.newYieldService(),
             subAccountService: factory.newSubAccountService(),
             authenticate: params => factory.authenticateUser(params),
             updateSessionToken: token => factory.updateSessionToken(token),
-            connect: () => Promise.resolve(null),
-            close: () => Promise.resolve(null)
+            connect: () => Promise.resolve(undefined),
+            close: () => Promise.resolve(undefined)
         });
     }
     static createWebsocketClient(configuration) {
@@ -121,7 +122,7 @@ NotbankClient.Factory = class Factory {
             verificationService: factory.newVerificationService(),
             authenticate: params => factory.authenticateUser(params),
             updateSessionToken: token => factory.updateSessionToken(token),
-            savingsService: factory.newSavingsService(),
+            yieldService: factory.newYieldService(),
             subAccountService: factory.newSubAccountService(),
             connect: () => factory.connect(),
             close: () => factory.close()

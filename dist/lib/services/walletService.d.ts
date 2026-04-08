@@ -26,6 +26,7 @@ import { CurrencyNetworkTemplates } from "../models/response/networkTemplates.js
 import { Transactions } from "../models/response/transaction.js";
 import { WhiteListedAddress } from "../models/response/whiteListedAddress.js";
 import { ResendVerificationCodeWhitelistedAddressRequest } from "../models/request/resendVerificationCodeWhitelistedAddress.js";
+import { GetOneStepWithdrawRequest } from "../models/index.js";
 import { Province } from "../models/response/index.js";
 import { GetProvincesRequest } from "../models/request/index.js";
 export declare class WalletService {
@@ -117,4 +118,8 @@ export declare class WalletService {
      * https://apidoc.notbank.exchange/#gettransactions
      */
     getTransactions(request: GetTransactionsRequest): Promise<Transactions>;
+    /**
+     * https://stg.apidoc.notbank.exchange/#getonestepwithdraw
+     */
+    getOneStepWithdraw(request: GetOneStepWithdrawRequest): Promise<Boolean>;
 }

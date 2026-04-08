@@ -122,7 +122,7 @@ export class WalletService {
     createFiatDeposit(request) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield this.connection.nbRequest(Endpoint.FIAT_DEPOSIT, RequestType.POST, request);
-            return result === null || result === void 0 ? void 0 : result.url;
+            return (result === null || result === void 0 ? void 0 : result.url) || (result === null || result === void 0 ? void 0 : result.qr);
         });
     }
     /**
@@ -157,6 +157,15 @@ export class WalletService {
      */
     getTransactions(request) {
         return __classPrivateFieldGet(this, _WalletService_instances, "m", _WalletService_nbPagedRequest).call(this, Endpoint.GET_TRANSACTIONS, RequestType.GET, request);
+    }
+    /**
+     * https://stg.apidoc.notbank.exchange/#getonestepwithdraw
+     */
+    getOneStepWithdraw(request) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield __classPrivateFieldGet(this, _WalletService_instances, "m", _WalletService_nbPagedRequest).call(this, Endpoint.GET_TRANSACTIONS, RequestType.GET, request);
+            return result.enabled;
+        });
     }
 }
 _WalletService_instances = new WeakSet(), _WalletService_nbPagedRequest = function _WalletService_nbPagedRequest(endpoint, requestType, message) {

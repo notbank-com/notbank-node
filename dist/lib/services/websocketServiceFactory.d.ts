@@ -8,7 +8,7 @@ import { ProductService } from "./productService.js";
 import { QuoteService } from "./quoteService.js";
 import { RegisterService } from "./registerService.js";
 import { ReportService } from "./reportService.js";
-import { SavingsService } from "./savingsService.js";
+import { YieldService } from "./yieldService.js";
 import { SubAccountService } from "./subAccountService.js";
 import { SubscriptionService } from "./subscriptionService.js";
 import { SystemService } from "./systemService.js";
@@ -47,6 +47,6 @@ export declare class WebsocketServiceFactory {
     newQuoteService(): QuoteService;
     newRegisterService(): RegisterService;
     newVerificationService(): VerificationService;
-    newSavingsService(): SavingsService;
+    newYieldService(): YieldService;
     newSubAccountService(): SubAccountService;
 }

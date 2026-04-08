@@ -24,7 +24,7 @@ describe("fee service", () => {
   });
 
   describe("getWithdrawFee", () => {
-    it.only("success response", async () => {
+    it("success response", async () => {
       const response = await client.getFeeService().getWithdrawFee({
         AccountId: 12,
         Amount: 200,

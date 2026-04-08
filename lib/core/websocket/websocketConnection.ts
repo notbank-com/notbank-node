@@ -25,7 +25,7 @@ export class WebsocketConnection implements ServiceConnection {
   private peekMessageIn: (message: MessageFrame) => void;
   private peekMessageOut: (message: MessageFrame) => void;
 
-  constructor(configuration: WebsocketConnectionConfiguration) {
+  constructor(configuration?: WebsocketConnectionConfiguration) {
     this.domain = configuration?.domain || DEFAULT_DOMAIN;
     this.callbackManager = new CallbackManager();
     this.hooks = configuration?.websocketHooks || {};
@@ -50,18 +50,18 @@ export class WebsocketConnection implements ServiceConnection {
 
   async connect(): Promise<void> {
     this.websocket = new WebSocket("wss://" + this.domain + "/wsgateway");
-    this.websocket.onopen = event => this.hooks.onOpen?.(event);
-    this.websocket.onclose = event => this.hooks.onClose?.(event);
-    this.websocket.onerror = event => this.hooks.onError?.(event);
-    this.websocket.addEventListener("message", event => {
+    this.websocket.onopen = (event: any) => this.hooks.onOpen?.(event);
+    this.websocket.onclose = (event: any) => this.hooks.onClose?.(event);
+    this.websocket.onerror = (event: any) => this.hooks.onError?.(event);
+    this.websocket.addEventListener("message", (event: any) => {
       const messageFrame = JSON.parse(event.data) as MessageFrame;
       this.#handleMessage(messageFrame);
     });
-    this.websocket.addEventListener("message", event =>
+    this.websocket.addEventListener("message", (event: any) =>
       this.hooks.onMessage?.(event)
     );
     return new Promise<void>((resolve, _) =>
-      this.websocket.addEventListener("open", _ => resolve())
+      this.websocket.addEventListener("open", (_: any) => resolve())
     );
   }
 

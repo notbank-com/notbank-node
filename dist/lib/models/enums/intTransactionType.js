@@ -13,4 +13,5 @@ export var IntTransactionType;
     IntTransactionType[IntTransactionType["MARGIN"] = 10] = "MARGIN";
     IntTransactionType[IntTransactionType["AIRDROP"] = 11] = "AIRDROP";
     IntTransactionType[IntTransactionType["DISTRIBUTION"] = 12] = "DISTRIBUTION";
+    IntTransactionType[IntTransactionType["MIGRATION"] = 13] = "MIGRATION";
 })(IntTransactionType || (IntTransactionType = {}));

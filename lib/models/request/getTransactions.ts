@@ -1,4 +1,5 @@
-import { IntTransactionSubType, IntTransactionType } from "../enums"
+import { IntTransactionSubType } from "../enums/intTransactionSubType"
+import { IntTransactionType } from "../enums/intTransactionType"
 
 export interface GetTransactionsRequest {
   from_date?: string

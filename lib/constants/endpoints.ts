@@ -124,9 +124,10 @@ export enum Endpoint {
   VERIFICATION_STATUS = "account/verification/status",
   VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES = "account/verification/institutional/members/types",
 
-  // savings
-  SAVINGS_DEPOSIT = "savings/deposit",
-  SAVINGS_WITHDRAW = "savings/withdraw",
+  // yield
+  YIELD_PRODUCTS = "yield/products",
+  YIELD_DEPOSIT = "yield/deposit",
+  YIELD_WITHDRAW = "yield/withdraw",
 
   // subaccount
   SUBACCOUNT = "subaccounts",

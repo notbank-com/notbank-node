@@ -1,8 +1,9 @@
-import { YieldProduct } from "../enums/index.js";
+import { YieldProductType } from "../enums/index.js";
 export interface WithdrawFromYieldRequest {
+    account_id: number;
     amount: number;
     product_id: number;
     currency: string;
-    type: YieldProduct;
+    type: YieldProductType;
     user_id?: string;
 }

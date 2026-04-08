@@ -96,6 +96,7 @@ export * from "./unsubscribeTicker.js";
 export * from "./unsubscribeTrades.js";
 export * from "./updateOneStepWithdraw.js";
 export * from "./webAuthenticateUser.js";
+export * from "./getOneStepWithdraw.js";
 export * from "./getInstitutionalCompanySchemas.js";
 export * from "./VerifyInstitutionalCompany.js";
 export * from "./getInstitutionalMemberSchemas.js";

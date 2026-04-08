@@ -8,13 +8,13 @@ import { ProductService } from "./productService.js";
 import { QuoteService } from "./quoteService.js";
 import { RegisterService } from "./registerService.js";
 import { ReportService } from "./reportService.js";
-import { SavingsService } from "./savingsService.js";
+import { YieldService } from "./yieldService.js";
+import { SubAccountService } from "./subAccountService.js";
 import { SubscriptionService } from "./subscriptionService.js";
 import { SystemService } from "./systemService.js";
 import { TradingService } from "./tradingService.js";
 import { UserService } from "./userService.js";
 import { VerificationService } from "./verificationService.js";
-import { SubAccountService } from "./subAccountService.js";
 import { WalletService } from "./walletService.js";
 export declare class NotbankClient {
     connection: ServiceConnection;
@@ -32,14 +32,14 @@ export declare class NotbankClient {
     quoteService: QuoteService;
     registerService: RegisterService;
     verificationService: VerificationService;
-    savingsService: SavingsService;
+    yieldService: YieldService;
     subAccountService: SubAccountService;
     authenticateUser: (params: {
         ApiPublicKey: string;
         ApiSecretKey: string;
         UserId: number;
     }) => Promise<void>;
-    updateSessionToken: (string: any) => void;
+    updateSessionToken: (token: string) => void;
     connect: () => Promise<void>;
     close: () => Promise<void>;
     constructor(params: {
@@ -58,14 +58,14 @@ export declare class NotbankClient {
         quoteService: QuoteService;
         registerService: RegisterService;
         verificationService: VerificationService;
-        savingsService: SavingsService;
+        yieldService: YieldService;
         subAccountService: SubAccountService;
         authenticate: (authParams: {
             ApiPublicKey: string;
             ApiSecretKey: string;
             UserId: number;
         }) => Promise<void>;
-        updateSessionToken: (string: any) => void;
+        updateSessionToken: (token: string) => void;
         connect: () => Promise<void>;
         close: () => Promise<void>;
     });
@@ -87,7 +87,7 @@ export declare class NotbankClient {
     getQuoteService(): QuoteService;
     getRegisterService(): RegisterService;
     getVerificationService(): VerificationService;
-    getSavingsService(): SavingsService;
+    getYieldService(): YieldService;
     getSubAccountService(): SubAccountService;
     getConnection(): ServiceConnection;
 }

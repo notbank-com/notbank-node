@@ -9,18 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import assert from "assert";
 import "mocha";
-import { YieldProduct } from "../../lib/models/enums/index.js";
+import { YieldProductType } from "../../lib/models/enums/index.js";
 import { NotbankClient } from "../../lib/services/notbankClient.js";
-describe("savings service", () => {
+import { TestHelper } from "./TestHelper.js";
+describe.only("yield service", () => {
     const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
+    before(() => __awaiter(void 0, void 0, void 0, function* () {
+        yield client.authenticateUser(TestHelper.getCredentials());
+    }));
     client.updateSessionToken("e613604a-4359-cded-096f-0f343674b9ae");
+    describe("getYieldProducts", () => {
+        it("should get yield products", () => __awaiter(void 0, void 0, void 0, function* () {
+            const response = yield client.getYieldService().getYieldProducts();
+            console.log("transaction id:", response);
+            assert.ok(response, "Response should not be null");
+        }));
+    });
     describe("depositToYield", () => {
         it("should deposit to yield", () => __awaiter(void 0, void 0, void 0, function* () {
-            const response = yield client.getSavingsService().depositToYield({
+            const response = yield client.getYieldService().depositToYield({
+                account_id: 235,
                 amount: 10,
                 product_id: 5,
                 currency: "USDT",
-                type: YieldProduct.VARIABLE
+                type: YieldProductType.VARIABLE
             });
             console.log("transaction id:", response);
             assert.ok(response, "Response should not be null");
@@ -28,11 +40,12 @@ describe("savings service", () => {
     });
     describe("withdrawFromYield", () => {
         it("should withdraw from yield", () => __awaiter(void 0, void 0, void 0, function* () {
-            const response = yield client.getSavingsService().withdrawFromYield({
+            const response = yield client.getYieldService().withdrawFromYield({
+                account_id: 235,
                 amount: 10,
                 product_id: 5,
                 currency: "USDT",
-                type: YieldProduct.VARIABLE
+                type: YieldProductType.VARIABLE
             });
             console.log("transaction id:", response);
             assert.ok(response, "Response should not be null");

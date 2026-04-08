@@ -10,15 +10,17 @@ import { ProductService } from "./productService";
 import { QuoteService } from "./quoteService";
 import { RegisterService } from "./registerService";
 import { ReportService } from "./reportService";
-import { SavingsService } from "./savingsService";
+import { YieldService } from "./yieldService";
+import { SubAccountService } from "./subAccountService";
 import { SubscriptionService } from "./subscriptionService";
 import { SystemService } from "./systemService";
 import { TradingService } from "./tradingService";
 import { UserService } from "./userService";
 import { VerificationService } from "./verificationService";
-import { SubAccountService } from "./subAccountService";
 import { WalletService } from "./walletService";
 import { WebsocketServiceFactory } from "./websocketServiceFactory";
+
+const DEFAULT_DOMAIN = "api.notbank.exchange";
 
 export class NotbankClient {
   connection: ServiceConnection
@@ -36,14 +38,14 @@ export class NotbankClient {
   quoteService: QuoteService
   registerService: RegisterService
   verificationService: VerificationService
-  savingsService: SavingsService
+  yieldService: YieldService
   subAccountService: SubAccountService
   authenticateUser: (params: {
     ApiPublicKey: string,
     ApiSecretKey: string,
     UserId: number,
   }) => Promise<void>
-  updateSessionToken: (string) => void
+  updateSessionToken: (token: string) => void
   connect: () => Promise<void>
   close: () => Promise<void>
 
@@ -64,14 +66,14 @@ export class NotbankClient {
       quoteService: QuoteService,
       registerService: RegisterService,
       verificationService: VerificationService,
-      savingsService: SavingsService,
+      yieldService: YieldService,
       subAccountService: SubAccountService,
       authenticate: (authParams: {
         ApiPublicKey: string,
         ApiSecretKey: string,
         UserId: number,
       }) => Promise<void>,
-      updateSessionToken: (string) => void,
+      updateSessionToken: (token: string) => void,
       connect: () => Promise<void>,
       close: () => Promise<void>,
     }
@@ -91,7 +93,7 @@ export class NotbankClient {
     this.quoteService = params.quoteService
     this.registerService = params.registerService
     this.verificationService = params.verificationService
-    this.savingsService = params.savingsService;
+    this.yieldService = params.yieldService;
     this.subAccountService = params.subAccountService;
     this.authenticateUser = params.authenticate
     this.updateSessionToken = params.updateSessionToken
@@ -119,12 +121,12 @@ export class NotbankClient {
         quoteService: factory.newQuoteService(),
         registerService: factory.newRegisterService(),
         verificationService: factory.newVerificationService(),
-        savingsService: factory.newSavingsService(),
+        yieldService: factory.newYieldService(),
         subAccountService: factory.newSubAccountService(),
         authenticate: params => factory.authenticateUser(params),
         updateSessionToken: token => factory.updateSessionToken(token),
-        connect: () => Promise.resolve(null),
-        close: () => Promise.resolve(null)
+        connect: () => Promise.resolve(undefined),
+        close: () => Promise.resolve(undefined)
       })
     }
     static createWebsocketClient(configuration?: WebsocketConnectionConfiguration) {
@@ -148,7 +150,7 @@ export class NotbankClient {
           verificationService: factory.newVerificationService(),
           authenticate: params => factory.authenticateUser(params),
           updateSessionToken: token => factory.updateSessionToken(token),
-          savingsService: factory.newSavingsService(),
+          yieldService: factory.newYieldService(),
           subAccountService: factory.newSubAccountService(),
           connect: () => factory.connect(),
           close: () => factory.close()
@@ -210,8 +212,8 @@ export class NotbankClient {
     return this.verificationService
   }
 
-  getSavingsService(): SavingsService {
-    return this.savingsService
+  getYieldService(): YieldService {
+    return this.yieldService
   }
 
   getSubAccountService(): SubAccountService {

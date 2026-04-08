@@ -27,6 +27,7 @@ import { CurrencyNetworkTemplates } from "../models/response/networkTemplates";
 import { Transactions } from "../models/response/transaction";
 import { WhiteListedAddress } from "../models/response/whiteListedAddress";
 import { ResendVerificationCodeWhitelistedAddressRequest } from "../models/request/resendVerificationCodeWhitelistedAddress";
+import { GetOneStepWithdrawRequest } from "../models";
 import { Province } from "../models/response";
 import { GetProvincesRequest } from "../models/request";
 
@@ -226,12 +227,12 @@ export class WalletService {
    * https://apidoc.notbank.exchange/#createfiatdeposit
    */
   async createFiatDeposit(request: CreateFiatDepositRequest): Promise<string | undefined> {
-    const result = await this.connection.nbRequest<CreateFiatDepositRequest, { url?: string }>(
+    const result = await this.connection.nbRequest<CreateFiatDepositRequest, { url?: string, qr?: string }>(
       Endpoint.FIAT_DEPOSIT,
       RequestType.POST,
       request
     );
-    return result?.url;
+    return result?.url || result?.qr;
   }
 
   /**
@@ -288,5 +289,17 @@ export class WalletService {
       RequestType.GET,
       request
     );
+  }
+
+  /**
+   * https://stg.apidoc.notbank.exchange/#getonestepwithdraw
+   */
+  async getOneStepWithdraw(request: GetOneStepWithdrawRequest): Promise<Boolean> {
+    const result = await this.#nbPagedRequest<GetOneStepWithdrawRequest, { enabled: boolean }>(
+      Endpoint.GET_TRANSACTIONS,
+      RequestType.GET,
+      request
+    );
+    return result.enabled;
   }
 }

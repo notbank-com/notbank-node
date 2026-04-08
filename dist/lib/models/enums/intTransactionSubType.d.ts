@@ -15,5 +15,7 @@ export declare enum IntTransactionSubType {
     MARGIN = 13,
     AIRDROP = 14,
     ORDER = 15,
-    DISTRIBUTION_ENTRY = 16
+    DISTRIBUTION_ENTRY = 16,
+    MIGRATION = 17,
+    MANUAL_ENTRY = 18
 }

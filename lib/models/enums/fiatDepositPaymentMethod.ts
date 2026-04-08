@@ -1,0 +1,8 @@
+export enum FiatDepositPaymentMethod {
+  MANUAL_BANK_TRANSFER = 1,
+  VIRTUAL_WALLET = 3,
+  QR_CODE = 4,
+  ASSISTED_BANK_TRANSFER = 5,
+  CREDIT_DEBIT_CARD = 6,
+  CASH_OR_CARD = 7,
+}

@@ -177,6 +177,15 @@ describe("wallet service", () => {
             }));
         }));
     });
+    describe("getOneStepWithdraw", () => {
+        it("should not reject", () => __awaiter(void 0, void 0, void 0, function* () {
+            yield assert.doesNotReject(() => __awaiter(void 0, void 0, void 0, function* () {
+                yield service.getOneStepWithdraw({
+                    account_id: 235,
+                });
+            }));
+        }));
+    });
     describe("createCryptoWithdraw", () => {
         it("should work", () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield service.createCryptoWithdraw({

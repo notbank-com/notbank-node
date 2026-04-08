@@ -25,7 +25,7 @@ import { WalletService } from "./walletService.js";
 import { QuoteService } from "./quoteService.js";
 import { VerificationService } from "./verificationService.js";
 import { RegisterService } from "./registerService.js";
-import { SavingsService } from "./savingsService.js";
+import { YieldService } from "./yieldService.js";
 import { SubAccountService } from "./subAccountService.js";
 const DEFAULT_DOMAIN = "api.notbank.exchange";
 export class HttpServiceFactory {
@@ -89,8 +89,8 @@ export class HttpServiceFactory {
     newVerificationService() {
         return new VerificationService(__classPrivateFieldGet(this, _HttpServiceFactory_httpConnection, "f"));
     }
-    newSavingsService() {
-        return new SavingsService(__classPrivateFieldGet(this, _HttpServiceFactory_httpConnection, "f"));
+    newYieldService() {
+        return new YieldService(__classPrivateFieldGet(this, _HttpServiceFactory_httpConnection, "f"));
     }
     newSubAccountService() {
         return new SubAccountService(__classPrivateFieldGet(this, _HttpServiceFactory_httpConnection, "f"));
