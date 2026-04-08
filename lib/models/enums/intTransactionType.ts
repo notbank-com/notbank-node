@@ -12,4 +12,5 @@ export enum IntTransactionType {
   MARGIN = 10,
   AIRDROP = 11,
   DISTRIBUTION = 12,
+  MIGRATION = 13,
 }
