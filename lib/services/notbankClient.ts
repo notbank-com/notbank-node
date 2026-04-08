@@ -10,7 +10,7 @@ import { ProductService } from "./productService";
 import { QuoteService } from "./quoteService";
 import { RegisterService } from "./registerService";
 import { ReportService } from "./reportService";
-import { SavingsService } from "./savingsService";
+import { YieldService } from "./yieldService";
 import { SubAccountService } from "./subAccountService";
 import { SubscriptionService } from "./subscriptionService";
 import { SystemService } from "./systemService";
@@ -38,7 +38,7 @@ export class NotbankClient {
   quoteService: QuoteService
   registerService: RegisterService
   verificationService: VerificationService
-  savingsService: SavingsService
+  yieldService: YieldService
   subAccountService: SubAccountService
   authenticateUser: (params: {
     ApiPublicKey: string,
@@ -66,7 +66,7 @@ export class NotbankClient {
       quoteService: QuoteService,
       registerService: RegisterService,
       verificationService: VerificationService,
-      savingsService: SavingsService,
+      yieldService: YieldService,
       subAccountService: SubAccountService,
       authenticate: (authParams: {
         ApiPublicKey: string,
@@ -93,7 +93,7 @@ export class NotbankClient {
     this.quoteService = params.quoteService
     this.registerService = params.registerService
     this.verificationService = params.verificationService
-    this.savingsService = params.savingsService;
+    this.yieldService = params.yieldService;
     this.subAccountService = params.subAccountService;
     this.authenticateUser = params.authenticate
     this.updateSessionToken = params.updateSessionToken
@@ -121,7 +121,7 @@ export class NotbankClient {
         quoteService: factory.newQuoteService(),
         registerService: factory.newRegisterService(),
         verificationService: factory.newVerificationService(),
-        savingsService: factory.newSavingsService(),
+        yieldService: factory.newYieldService(),
         subAccountService: factory.newSubAccountService(),
         authenticate: params => factory.authenticateUser(params),
         updateSessionToken: token => factory.updateSessionToken(token),
@@ -150,7 +150,7 @@ export class NotbankClient {
           verificationService: factory.newVerificationService(),
           authenticate: params => factory.authenticateUser(params),
           updateSessionToken: token => factory.updateSessionToken(token),
-          savingsService: factory.newSavingsService(),
+          yieldService: factory.newYieldService(),
           subAccountService: factory.newSubAccountService(),
           connect: () => factory.connect(),
           close: () => factory.close()
@@ -212,8 +212,8 @@ export class NotbankClient {
     return this.verificationService
   }
 
-  getSavingsService(): SavingsService {
-    return this.savingsService
+  getYieldService(): YieldService {
+    return this.yieldService
   }
 
   getSubAccountService(): SubAccountService {

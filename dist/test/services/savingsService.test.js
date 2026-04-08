@@ -18,16 +18,17 @@ describe("savings service", () => {
         yield client.authenticateUser(TestHelper.getCredentials());
     }));
     client.updateSessionToken("e613604a-4359-cded-096f-0f343674b9ae");
-    describe.only("getYieldProducts", () => {
+    describe("getYieldProducts", () => {
         it("should get yield products", () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield client.getSavingsService().getYieldProducts();
             console.log("transaction id:", response);
             assert.ok(response, "Response should not be null");
         }));
     });
-    describe("depositToYield", () => {
+    describe.only("depositToYield", () => {
         it("should deposit to yield", () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield client.getSavingsService().depositToYield({
+                account_id: 235,
                 amount: 10,
                 product_id: 5,
                 currency: "USDT",
@@ -37,9 +38,10 @@ describe("savings service", () => {
             assert.ok(response, "Response should not be null");
         }));
     });
-    describe("withdrawFromYield", () => {
+    describe.only("withdrawFromYield", () => {
         it("should withdraw from yield", () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield client.getSavingsService().withdrawFromYield({
+                account_id: 235,
                 amount: 10,
                 product_id: 5,
                 currency: "USDT",

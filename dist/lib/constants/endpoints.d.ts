@@ -99,8 +99,8 @@ export declare enum Endpoint {
     VERIFICATION_STATUS = "account/verification/status",
     VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES = "account/verification/institutional/members/types",
     YIELD_PRODUCTS = "yield/products",
-    SAVINGS_DEPOSIT = "savings/deposit",
-    SAVINGS_WITHDRAW = "savings/withdraw",
+    SAVINGS_DEPOSIT = "yield/deposit",
+    SAVINGS_WITHDRAW = "yield/withdraw",
     SUBACCOUNT = "subaccounts"
 }
 export declare enum WebSocketEndpoint {

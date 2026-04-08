@@ -1,9 +1,9 @@
 import { Endpoint } from "../constants/endpoints";
 import { RequestType, ServiceConnection } from "../core/serviceClient";
-import { YieldProduct, YieldProductType } from "../models";
+import { YieldProduct } from "../models";
 import { DepositToYieldRequest, WithdrawFromYieldRequest } from "../models/request";
 
-export class SavingsService {
+export class YieldService {
   connection: ServiceConnection;
 
   constructor(connection: ServiceConnection) {
@@ -23,7 +23,7 @@ export class SavingsService {
 
   depositToYield(request: DepositToYieldRequest): Promise<number> {
     return this.connection.nbRequest(
-      Endpoint.SAVINGS_DEPOSIT,
+      Endpoint.YIELD_DEPOSIT,
       RequestType.POST,
       request
     );
@@ -31,7 +31,7 @@ export class SavingsService {
 
   withdrawFromYield(request: WithdrawFromYieldRequest): Promise<number> {
     return this.connection.nbRequest(
-      Endpoint.SAVINGS_WITHDRAW,
+      Endpoint.YIELD_WITHDRAW,
       RequestType.POST,
       request
     );

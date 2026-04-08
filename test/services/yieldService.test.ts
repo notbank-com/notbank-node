@@ -5,7 +5,7 @@ import { YieldProductType } from "../../lib/models/enums";
 import { NotbankClient } from "../../lib/services/notbankClient";
 import { TestHelper } from "./TestHelper";
 
-describe("savings service", () => {
+describe("yield service", () => {
   const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
 
   before(async () => {
@@ -16,7 +16,7 @@ describe("savings service", () => {
   describe("getYieldProducts", () => {
     it("should get yield products", async () => {
 
-      const response = await client.getSavingsService().getYieldProducts()
+      const response = await client.getYieldService().getYieldProducts()
       console.log("transaction id:", response);
       assert.ok(response, "Response should not be null");
     });
@@ -24,7 +24,8 @@ describe("savings service", () => {
   describe("depositToYield", () => {
     it("should deposit to yield", async () => {
 
-      const response = await client.getSavingsService().depositToYield({
+      const response = await client.getYieldService().depositToYield({
+        account_id: 235,
         amount: 10,
         product_id: 5,
         currency: "USDT",
@@ -37,7 +38,8 @@ describe("savings service", () => {
 
   describe("withdrawFromYield", () => {
     it("should withdraw from yield", async () => {
-      const response = await client.getSavingsService().withdrawFromYield({
+      const response = await client.getYieldService().withdrawFromYield({
+        account_id: 235,
         amount: 10,
         product_id: 5,
         currency: "USDT",

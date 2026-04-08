@@ -17,4 +17,6 @@ export var IntTransactionSubType;
     IntTransactionSubType[IntTransactionSubType["AIRDROP"] = 14] = "AIRDROP";
     IntTransactionSubType[IntTransactionSubType["ORDER"] = 15] = "ORDER";
     IntTransactionSubType[IntTransactionSubType["DISTRIBUTION_ENTRY"] = 16] = "DISTRIBUTION_ENTRY";
+    IntTransactionSubType[IntTransactionSubType["MIGRATION"] = 17] = "MIGRATION";
+    IntTransactionSubType[IntTransactionSubType["MANUAL_ENTRY"] = 18] = "MANUAL_ENTRY";
 })(IntTransactionSubType || (IntTransactionSubType = {}));
