@@ -70,6 +70,8 @@ export * from "./getWithdrawFee";
 export * from "./modifyOrder";
 export * from "./orderBook";
 export * from "./registerNotbankUser";
+export * from "./registerBasicCaasUser";
+export * from "./registerAdvancedCaasUser";
 export * from "./removeUserReportTicket";
 export * from "./resendVerificationCodeWhitelistedAddress";
 export * from "./scheduleActivityReport";
