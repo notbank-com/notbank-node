@@ -165,6 +165,7 @@ var NotbankSdk = (() => {
     CLComune: () => CLComune,
     ChangeReason: () => ChangeReason,
     ChileBankAccountKind: () => ChileBankAccountKind,
+    CivilStatus: () => CivilStatus,
     ColombiaBankAccountKind: () => ColombiaBankAccountKind,
     DepositStatus: () => DepositStatus,
     Direction: () => Direction,
@@ -175,6 +176,7 @@ var NotbankSdk = (() => {
     FiatDepositPaymentMethod: () => FiatDepositPaymentMethod,
     FiatWithdrawPaymentMethod: () => FiatWithdrawPaymentMethod,
     Gender: () => Gender,
+    IdentityType: () => IdentityType,
     InstitutionalMember: () => InstitutionalMember,
     InstrumentStateArgument: () => InstrumentStateArgument,
     InstrumentType: () => InstrumentType,
@@ -286,6 +288,16 @@ var NotbankSdk = (() => {
     ChangeReason2["USERMODIFIED"] = "UserModified";
     return ChangeReason2;
   })(ChangeReason || {});
+
+  // lib/models/enums/civilStatus.ts
+  var CivilStatus = /* @__PURE__ */ ((CivilStatus2) => {
+    CivilStatus2["SOLTERO"] = "soltero";
+    CivilStatus2["CASADO"] = "casado";
+    CivilStatus2["CONVIVIENTE"] = "conviviente";
+    CivilStatus2["DIVORCIADO"] = "divorciado";
+    CivilStatus2["VIUDO"] = "viudo";
+    return CivilStatus2;
+  })(CivilStatus || {});
 
   // lib/models/enums/countries.ts
   var SupportedCountry = /* @__PURE__ */ ((SupportedCountry2) => {
@@ -709,6 +721,19 @@ var NotbankSdk = (() => {
     IntTransactionSubType2[IntTransactionSubType2["MANUAL_ENTRY"] = 18] = "MANUAL_ENTRY";
     return IntTransactionSubType2;
   })(IntTransactionSubType || {});
+
+  // lib/models/enums/identityType.ts
+  var IdentityType = /* @__PURE__ */ ((IdentityType2) => {
+    IdentityType2[IdentityType2["DNI"] = 1] = "DNI";
+    IdentityType2[IdentityType2["EXTRANJERO"] = 2] = "EXTRANJERO";
+    IdentityType2[IdentityType2["NUIP"] = 3] = "NUIP";
+    IdentityType2[IdentityType2["NIP"] = 4] = "NIP";
+    IdentityType2[IdentityType2["PEP"] = 5] = "PEP";
+    IdentityType2[IdentityType2["CC"] = 6] = "CC";
+    IdentityType2[IdentityType2["CE"] = 7] = "CE";
+    IdentityType2[IdentityType2["PASAPORTE"] = 8] = "PASAPORTE";
+    return IdentityType2;
+  })(IdentityType || {});
 
   // lib/models/enums/yieldProductType.ts
   var YieldProductType = /* @__PURE__ */ ((YieldProductType2) => {
@@ -5558,6 +5583,20 @@ var NotbankSdk = (() => {
       this.connection = connection;
     }
     registerUser(request) {
+      return this.connection.nbRequest(
+        "account/register" /* REGISTER */,
+        "POST" /* POST */,
+        request
+      );
+    }
+    registerBasicCaasUser(request) {
+      return this.connection.nbRequest(
+        "account/register" /* REGISTER */,
+        "POST" /* POST */,
+        request
+      );
+    }
+    registerAdvancedCaasUser(request) {
       return this.connection.nbRequest(
         "account/register" /* REGISTER */,
         "POST" /* POST */,

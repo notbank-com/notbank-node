@@ -1,0 +1,34 @@
+import { ARProvince, BRState, CLComune, CivilStatus, Gender, IdentityType, Profession } from "../enums/index.js";
+export interface RegisterAdvancedCaasUserRequest {
+    first_name: string;
+    last_name: string;
+    phone_number: string;
+    profession: Profession;
+    gender: Gender;
+    birthdate: string;
+    citizenship: string;
+    identity_type: IdentityType;
+    identity_number: string;
+    identity_country: string;
+    address_country: string;
+    address_city: string;
+    address_street: string;
+    address_postal_code: string;
+    pep: boolean;
+    subject_comply: boolean;
+    is_public_servant: boolean;
+    address_province?: ARProvince;
+    address_district?: string;
+    address_number?: string;
+    address_state?: BRState;
+    address_complement?: string;
+    address_comune?: CLComune;
+    civil_status?: CivilStatus;
+    spouse_name?: string;
+    pep_position?: string;
+    pep_institution?: string;
+    pep_links_description?: string;
+    is_pep_family_member?: boolean;
+    pep_family_member_name?: string;
+    pep_family_member_relation?: string;
+}

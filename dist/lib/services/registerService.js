@@ -7,4 +7,10 @@ export class RegisterService {
     registerUser(request) {
         return this.connection.nbRequest(Endpoint.REGISTER, RequestType.POST, request);
     }
+    registerBasicCaasUser(request) {
+        return this.connection.nbRequest(Endpoint.REGISTER, RequestType.POST, request);
+    }
+    registerAdvancedCaasUser(request) {
+        return this.connection.nbRequest(Endpoint.REGISTER, RequestType.POST, request);
+    }
 }

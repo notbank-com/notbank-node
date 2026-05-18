@@ -70,6 +70,8 @@ export * from "./getWithdrawFee.js";
 export * from "./modifyOrder.js";
 export * from "./orderBook.js";
 export * from "./registerNotbankUser.js";
+export * from "./registerBasicCaasUser.js";
+export * from "./registerAdvancedCaasUser.js";
 export * from "./removeUserReportTicket.js";
 export * from "./resendVerificationCodeWhitelistedAddress.js";
 export * from "./scheduleActivityReport.js";
