@@ -1,6 +1,6 @@
 import { Endpoint } from "../constants/endpoints";
 import { RequestType, ServiceConnection } from "../core/serviceClient";
-import { RegisterNotbankUserRequest, UserRegistration } from "../models";
+import { RegisterNotbankUserRequest, RegisterBasicCaasUserRequest, RegisterAdvancedCaasUserRequest, UserRegistration } from "../models";
 
 export class RegisterService {
   connection: ServiceConnection;
@@ -10,6 +10,22 @@ export class RegisterService {
   }
 
   registerUser(request: RegisterNotbankUserRequest): Promise<UserRegistration> {
+    return this.connection.nbRequest(
+      Endpoint.REGISTER,
+      RequestType.POST,
+      request
+    );
+  }
+
+  registerBasicCaasUser(request: RegisterBasicCaasUserRequest): Promise<UserRegistration> {
+    return this.connection.nbRequest(
+      Endpoint.REGISTER,
+      RequestType.POST,
+      request
+    );
+  }
+
+  registerAdvancedCaasUser(request: RegisterAdvancedCaasUserRequest): Promise<UserRegistration> {
     return this.connection.nbRequest(
       Endpoint.REGISTER,
       RequestType.POST,

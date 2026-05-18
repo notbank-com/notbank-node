@@ -10,6 +10,7 @@ export * from "./accountType";
 export * from "./actionType";
 export * from "./bankAccounts";
 export * from "./changeReason";
+export * from "./civilStatus";
 export * from "./countries";
 export * from "./depositStatus";
 export * from "./direction";
@@ -49,6 +50,7 @@ export * from "./fiatDepositPaymentMethod";
 export * from "./fiatWithdrawPaymentMethod";
 export * from "./intTransactionType";
 export * from "./intTransactionSubType";
+export * from "./identityType";
 export * from "./yieldProductType"
 export * from "./arProvince";
 export * from "./clComune";
