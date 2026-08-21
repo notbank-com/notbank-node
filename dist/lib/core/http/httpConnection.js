@@ -20,6 +20,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 };
 var _HttpConnection_host, _HttpConnection_sessionToken, _HttpConnection_peekRequest, _HttpConnection_peekResponse;
 import { Endpoint } from "../../constants/endpoints.js";
+import { NotbankError } from "../../models/index.js";
 import { RequestType } from "../serviceClient.js";
 import { ApResponseHandler } from "./apResponseHandler.js";
 import { FormDataBuilder } from "./formDataBuilder.js";
@@ -53,9 +54,23 @@ export class HttpConnection {
             const formData = FormDataBuilder.build({ fields, files, message: message || {} });
             const headers = this.getHeaders();
             __classPrivateFieldGet(this, _HttpConnection_peekRequest, "f").call(this, { url, requestType: RequestType.POST, params: formData, headers: headers });
-            const response = yield FormDataRequester.post({ url, formData, headers: headers });
-            __classPrivateFieldGet(this, _HttpConnection_peekResponse, "f").call(this, response);
-            return yield NbResponseHandler.handle(response, false);
+            try {
+                const response = yield FormDataRequester.post({ url, formData, headers: headers });
+                __classPrivateFieldGet(this, _HttpConnection_peekResponse, "f").call(this, response);
+                return yield NbResponseHandler.handle(response, false);
+            }
+            catch (error) {
+                if (error.response) {
+                    __classPrivateFieldGet(this, _HttpConnection_peekResponse, "f").call(this, error.response);
+                    throw new NotbankError(`Notbank Error. http status=${error.response.status}. ${JSON.stringify(error.response.data)}`, -1);
+                }
+                // Request was made but no response was received (Network / Timeout issues)
+                else if (error.request) {
+                    throw new NotbankError(`Notbank Error. No response received. ${error}`, -1);
+                }
+                // Something went wrong setting up the request itself
+                throw new NotbankError(`Notbank Error. ${error}`, -1);
+            }
         });
     }
     apRequest(endpoint, requestType, message, extraHeaders) {

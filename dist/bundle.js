@@ -4183,9 +4183,22 @@ var NotbankSdk = (() => {
         const formData = FormDataBuilder.build({ fields, files, message: message || {} });
         const headers = this.getHeaders();
         __privateGet(this, _peekRequest).call(this, { url, requestType: "POST" /* POST */, params: formData, headers });
-        const response = yield FormDataRequester.post({ url, formData, headers });
-        __privateGet(this, _peekResponse).call(this, response);
-        return yield NbResponseHandler.handle(response, false);
+        try {
+          const response = yield FormDataRequester.post({ url, formData, headers });
+          __privateGet(this, _peekResponse).call(this, response);
+          return yield NbResponseHandler.handle(response, false);
+        } catch (error) {
+          if (error.response) {
+            __privateGet(this, _peekResponse).call(this, error.response);
+            throw new NotbankError(
+              `Notbank Error. http status=${error.response.status}. ${JSON.stringify(error.response.data)}`,
+              -1
+            );
+          } else if (error.request) {
+            throw new NotbankError(`Notbank Error. No response received. ${error}`, -1);
+          }
+          throw new NotbankError(`Notbank Error. ${error}`, -1);
+        }
       });
     }
     apRequest(endpoint, requestType, message, extraHeaders) {

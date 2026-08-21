@@ -70,7 +70,7 @@ describe("wallet service", () => {
             assert.ok(account);
         }));
     });
-    describe.only("getClientBankAccounts", () => {
+    describe("getClientBankAccounts", () => {
         it("should work", () => __awaiter(void 0, void 0, void 0, function* () {
             const account = yield service.getClientBankAccounts({
                 user_id: 'ac77a800-7914-4d04-ba3b-8f66c5b4968d'

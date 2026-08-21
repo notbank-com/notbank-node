@@ -12,11 +12,16 @@ import "mocha";
 import { readFileSync } from 'fs';
 import { DocumentAdressType, Gender, Profession } from "../../lib/models/enums/index.js";
 import { NotbankClient } from "../../lib/services/notbankClient.js";
+import { TestHelper } from "./TestHelper.js";
 describe("verification service", () => {
-    const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange");
+    const client = NotbankClient.Factory.createRestClient("stgapi.notbank.exchange", request => { console.log(request.url); }, response => { console.log(response); });
     client.updateSessionToken("e613604a-4359-cded-096f-0f343674b9ae");
+    before(() => __awaiter(void 0, void 0, void 0, function* () {
+        // Autenticación previa a todas las pruebas en este bloque, http only
+        yield client.authenticateUser(TestHelper.getCredentials());
+    }));
     describe("verifyBasic", () => {
-        it("should verify an user to basic level", () => __awaiter(void 0, void 0, void 0, function* () {
+        it.only("should verify an user to basic level", () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield client.getVerificationService().verifyBasic({
                 is_business: true,
                 profession: Profession.ACCOUNTANT,
@@ -32,6 +37,7 @@ describe("verification service", () => {
     it("should verify an user to trader level", () => __awaiter(void 0, void 0, void 0, function* () {
         const image = new File([readFileSync("image.png")], "image.png");
         yield client.getVerificationService().verifyTrader({
+            user_id: "ac77a800-7914-4d04-ba3b-8f66c5b4968d",
             pep: false,
             subject_comply: false,
             is_public_servant: false,
@@ -154,7 +160,7 @@ describe("verification service", () => {
         assert.ok(response, "Response should not be null");
     }));
     it("should fetch the user current verification level and status", () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield client.getVerificationService().getVerificationStatus({});
+        const response = yield client.getVerificationService().getVerificationStatus();
         console.log("user verification level and state:", response);
         assert.ok(response, "Response should not be null");
     }));
