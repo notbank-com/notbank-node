@@ -73,7 +73,7 @@ describe("wallet service", () => {
     });
   });
 
-  describe.only("getClientBankAccounts", () => {
+  describe("getClientBankAccounts", () => {
     it("should work", async () => {
       const account = await service.getClientBankAccounts({
         user_id: 'ac77a800-7914-4d04-ba3b-8f66c5b4968d'

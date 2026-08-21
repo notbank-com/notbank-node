@@ -2,7 +2,8 @@ import { AxiosResponse } from "axios";
 import { Endpoint } from "../../constants/endpoints";
 import {
   AuthenticateUserRequest,
-  AuthenticateUserResponse
+  AuthenticateUserResponse,
+  NotbankError
 } from "../../models";
 import { RequestType, ServiceConnection } from "../serviceClient";
 import { MessageFrame } from "../websocket/messageFrame";
@@ -52,9 +53,25 @@ export class HttpConnection implements ServiceConnection {
     const formData = FormDataBuilder.build({ fields, files, message: message || {} })
     const headers = this.getHeaders();
     this.#peekRequest({ url, requestType: RequestType.POST, params: formData, headers: headers })
-    const response = await FormDataRequester.post({ url, formData, headers: headers });
-    this.#peekResponse(response)
-    return await NbResponseHandler.handle<T2>(response, false);
+    try {
+      const response = await FormDataRequester.post({ url, formData, headers: headers });
+      this.#peekResponse(response)
+      return await NbResponseHandler.handle<T2>(response, false);
+    } catch (error: any) {
+      if (error.response) {
+        this.#peekResponse(error.response)
+        throw new NotbankError(
+          `Notbank Error. http status=${error.response.status}. ${JSON.stringify(error.response.data)}`,
+          -1
+        );
+      }
+      // Request was made but no response was received (Network / Timeout issues)
+      else if (error.request) {
+        throw new NotbankError(`Notbank Error. No response received. ${error}`, -1);
+      }
+      // Something went wrong setting up the request itself
+      throw new NotbankError(`Notbank Error. ${error}`, -1);
+    }
   }
 
   async apRequest<T1, T2>(
