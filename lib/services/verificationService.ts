@@ -1,6 +1,6 @@
 import { Endpoint } from "../constants/endpoints";
 import { RequestType, ServiceConnection } from "../core/serviceClient";
-import { BasicVerificationResponse, EnumType, GetInstitutionalCompanySchemasRequest, GetInstitutionalMemberSchemasRequest, InstitutionalMember, TraderPlusVerificationSchemasRequest, VerificationStatus, VerificationStatusRequest, VerifyBasicRequest, VerifyInstitutionalCompanyRequest, VerifyInstitutionalDocumentRequest, VerifyInstitutionalMemberRequest, VerifyTraderPlusRequest, VerifyTraderRequest } from "../models";
+import { BasicVerificationResponse, EnumType, GetInstitutionalCompanySchemasRequest, GetInstitutionalMemberSchemasRequest, InstitutionalMember, StartInstitutionalVerificationRequest, StartInstitutionalVerificationResponse, TraderPlusVerificationSchemasRequest, VerificationStatus, VerificationStatusRequest, VerifyBasicRequest, VerifyInstitutionalCompanyRequest, VerifyInstitutionalDocumentRequest, VerifyInstitutionalMemberRequest, VerifyTraderPlusRequest, VerifyTraderRequest } from "../models";
 
 export class VerificationService {
   connection: ServiceConnection;
@@ -46,6 +46,33 @@ export class VerificationService {
     );
   }
 
+  /**
+   * Starts the institutional verification of the authenticated user and
+   * returns the Sumsub credentials needed to run it.
+   *
+   * It replaces the whole institutional flow that used to be spread over the
+   * company, members and documents endpoints: the user no longer fills
+   * declarations against Notbank, Sumsub collects everything instead.
+   *
+   * The account must be a business account with an active institutional
+   * verification process, otherwise the server answers with an
+   * `invalid_request` error.
+   */
+  startInstitutionalVerification(
+    request: StartInstitutionalVerificationRequest = {}
+  ): Promise<StartInstitutionalVerificationResponse> {
+    return this.connection.nbRequest(
+      Endpoint.VERIFICATION_INSTITUTIONAL,
+      RequestType.POST,
+      request
+    );
+  }
+
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   getInstitutionalCompanySchemas(request: GetInstitutionalCompanySchemasRequest): Promise<any> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_INSTITUTIONAL_COMPANY_SCHEMAS,
@@ -55,6 +82,11 @@ export class VerificationService {
   }
 
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   verifyInstitutionalCompany(request: VerifyInstitutionalCompanyRequest): Promise<void> {
     let { files, fields, ...cleanRequest } = { ...request }
     return this.connection.nbFormDataRequest(
@@ -65,6 +97,11 @@ export class VerificationService {
     );
   }
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   getInstitutionalCompanyVerificationStatus(): Promise<any> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_INSTITUTIONAL_COMPANY,
@@ -72,6 +109,11 @@ export class VerificationService {
     );
   }
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   getInstitutionalMemberTypes(): Promise<EnumType[]> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES,
@@ -79,6 +121,11 @@ export class VerificationService {
     );
   }
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   getInstitutionalMemberSchemas(request: GetInstitutionalMemberSchemasRequest): Promise<any> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_INSTITUTIONAL_MEMBERS_SCHEMAS,
@@ -87,6 +134,11 @@ export class VerificationService {
     );
   }
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   verifyInstitutionalMember(request: VerifyInstitutionalMemberRequest): Promise<void> {
     let { files, fields, ...cleanRequest } = { ...request }
     return this.connection.nbFormDataRequest(
@@ -97,6 +149,11 @@ export class VerificationService {
     );
   }
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   getInstitutionalMemberVerificationStatus(): Promise<InstitutionalMember[]> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_INSTITUTIONAL_MEMBERS,
@@ -106,6 +163,11 @@ export class VerificationService {
 
 
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   getInstitutionalDocumentTypes(): Promise<EnumType[]> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_INSTITUTIONAL_DOCUMENTS_TYPES,
@@ -114,6 +176,11 @@ export class VerificationService {
   }
 
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   verifyInstitutionalDocument(request: VerifyInstitutionalDocumentRequest): Promise<void> {
     let { file, ...cleanRequest } = { ...request }
     return this.connection.nbFormDataRequest(
@@ -124,6 +191,11 @@ export class VerificationService {
     );
   }
 
+  /**
+   * @deprecated the institutional flow moved to Sumsub. Use
+   * {@link VerificationService.startInstitutionalVerification}. The endpoint
+   * behind this method was retired server side and answers with a 404.
+   */
   getInstitutionalDocumentVerificationStatus(): Promise<any[]> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_INSTITUTIONAL_DOCUMENTS,

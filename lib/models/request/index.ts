@@ -105,6 +105,7 @@ export * from "./getInstitutionalMemberSchemas";
 export * from "./verifyInstitutionalMember";
 export * from "./verifyInstitutionalDocument";
 export * from "./verificationStatus";
+export * from "./startInstitutionalVerification";
 export * from "./depositToYield";
 export * from "./withdrawFromYield";
 export * from "./getProvinces";
