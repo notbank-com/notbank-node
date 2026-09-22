@@ -48,7 +48,7 @@ export class VerificationService {
 
   /**
    * Starts the institutional verification of the authenticated user and
-   * returns the Sumsub credentials needed to run it.
+   * returns the Sumsub url the user has to be sent to.
    *
    * It replaces the whole institutional flow that used to be spread over the
    * company, members and documents endpoints: the user no longer fills
@@ -57,6 +57,9 @@ export class VerificationService {
    * The account must be a business account with an active institutional
    * verification process, otherwise the server answers with an
    * `invalid_request` error.
+   *
+   * The url may come back as null even on a successful response, see
+   * {@link StartInstitutionalVerificationResponse.link}.
    */
   startInstitutionalVerification(
     request: StartInstitutionalVerificationRequest = {}

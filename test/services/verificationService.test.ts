@@ -76,7 +76,7 @@ describe("verification service", () => {
       .startInstitutionalVerification();
     console.log("institutional verification:", response);
     assert.ok(response, "Response should not be null");
-    assert.ok(response.token, "Response should carry a sumsub token");
+    assert.ok("link" in response, "Response should carry the sumsub link");
     assert.ok(response.user_id, "Response should carry the user id");
   });
 

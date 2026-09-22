@@ -99,12 +99,27 @@ describe("institutional verification", () => {
     assert.deepStrictEqual(request.message, { phone: "+56911111111" });
   });
 
-  it("should return the sumsub credentials as the api sends them", async () => {
-    connection.response = { token: "tok_xyz", user_id: "an-uuid" };
+  it("should return the sumsub link as the api sends it", async () => {
+    connection.response = {
+      link: "https://sumsub.com/websdk/a-link",
+      user_id: "an-uuid"
+    };
 
     const response = await service.startInstitutionalVerification();
 
-    assert.strictEqual(response.token, "tok_xyz");
+    assert.strictEqual(response.link, "https://sumsub.com/websdk/a-link");
+    assert.strictEqual(response.user_id, "an-uuid");
+  });
+
+  it("should hand back a null link without failing", async () => {
+    // The server answers 200 with a null link when it issued the applicant
+    // but could not resolve its url, so the sdk must not turn that into an
+    // error of its own.
+    connection.response = { link: null, user_id: "an-uuid" };
+
+    const response = await service.startInstitutionalVerification();
+
+    assert.strictEqual(response.link, null);
     assert.strictEqual(response.user_id, "an-uuid");
   });
 

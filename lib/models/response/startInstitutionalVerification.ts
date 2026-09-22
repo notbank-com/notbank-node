@@ -1,15 +1,12 @@
 export interface StartInstitutionalVerificationResponse {
   /**
-   * Sumsub access token. It is the credential the Sumsub Web SDK (or the
-   * mobile SDKs) needs to open the verification flow for this applicant.
+   * Sumsub url the user has to be sent to in order to run the verification.
+   *
+   * It is null when the server issued the Sumsub applicant but could not
+   * resolve the url for it. The request still succeeds in that case, so read
+   * this field before redirecting.
    */
-  token: string
+  link: string | null
   /** uuid of the user the institutional verification process belongs to. */
   user_id: string
-  /**
-   * Ready to use Sumsub url, when the server builds it instead of handing out
-   * a bare token. Optional: as of today the api answers with {@link token},
-   * so read this field defensively.
-   */
-  link?: string
 }
