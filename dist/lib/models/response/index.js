@@ -57,6 +57,7 @@ export * from "./withdrawTemplate.js";
 export * from "./withdrawTicket.js";
 export * from "./yieldProduct.js";
 export * from "./institutionalMember.js";
+export * from "./startInstitutionalVerification.js";
 export * from "./verificationStatus.js";
 export * from "./enumType.js";
 export * from "./province.js";

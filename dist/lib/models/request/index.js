@@ -105,6 +105,7 @@ export * from "./getInstitutionalMemberSchemas.js";
 export * from "./verifyInstitutionalMember.js";
 export * from "./verifyInstitutionalDocument.js";
 export * from "./verificationStatus.js";
+export * from "./startInstitutionalVerification.js";
 export * from "./depositToYield.js";
 export * from "./withdrawFromYield.js";
 export * from "./getProvinces.js";

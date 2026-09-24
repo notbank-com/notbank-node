@@ -90,14 +90,22 @@ export declare enum Endpoint {
     VERIFICATION_TRADER = "account/verification/trader",
     VERIFICATION_TRADER_PLUS = "account/verification/trader-plus",
     VERIFICATION_TRADER_PLUS_SCHEMAS = "account/verification/trader-plus/schemas",
-    VERIFICATION_INSTITUTIONAL_COMPANY_SCHEMAS = "account/verification/institutional/company/schemas",
-    VERIFICATION_INSTITUTIONAL_COMPANY = "account/verification/institutional/company",
-    VERIFICATION_INSTITUTIONAL_MEMBERS_SCHEMAS = "account/verification/institutional/members/schemas",
-    VERIFICATION_INSTITUTIONAL_MEMBERS = "account/verification/institutional/members",
-    VERIFICATION_INSTITUTIONAL_DOCUMENTS_TYPES = "account/verification/institutional/documents/types",
-    VERIFICATION_INSTITUTIONAL_DOCUMENTS = "account/verification/institutional/documents",
+    VERIFICATION_INSTITUTIONAL = "account/verification/institutional",
     VERIFICATION_STATUS = "account/verification/status",
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    VERIFICATION_INSTITUTIONAL_COMPANY_SCHEMAS = "account/verification/institutional/company/schemas",
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    VERIFICATION_INSTITUTIONAL_COMPANY = "account/verification/institutional/company",
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    VERIFICATION_INSTITUTIONAL_MEMBERS_SCHEMAS = "account/verification/institutional/members/schemas",
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    VERIFICATION_INSTITUTIONAL_MEMBERS = "account/verification/institutional/members",
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
     VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES = "account/verification/institutional/members/types",
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    VERIFICATION_INSTITUTIONAL_DOCUMENTS_TYPES = "account/verification/institutional/documents/types",
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    VERIFICATION_INSTITUTIONAL_DOCUMENTS = "account/verification/institutional/documents",
     YIELD_PRODUCTS = "yield/products",
     YIELD_DEPOSIT = "yield/deposit",
     YIELD_WITHDRAW = "yield/withdraw",

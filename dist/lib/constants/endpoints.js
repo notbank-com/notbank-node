@@ -104,14 +104,26 @@ export var Endpoint;
     Endpoint["VERIFICATION_TRADER"] = "account/verification/trader";
     Endpoint["VERIFICATION_TRADER_PLUS"] = "account/verification/trader-plus";
     Endpoint["VERIFICATION_TRADER_PLUS_SCHEMAS"] = "account/verification/trader-plus/schemas";
-    Endpoint["VERIFICATION_INSTITUTIONAL_COMPANY_SCHEMAS"] = "account/verification/institutional/company/schemas";
-    Endpoint["VERIFICATION_INSTITUTIONAL_COMPANY"] = "account/verification/institutional/company";
-    Endpoint["VERIFICATION_INSTITUTIONAL_MEMBERS_SCHEMAS"] = "account/verification/institutional/members/schemas";
-    Endpoint["VERIFICATION_INSTITUTIONAL_MEMBERS"] = "account/verification/institutional/members";
-    Endpoint["VERIFICATION_INSTITUTIONAL_DOCUMENTS_TYPES"] = "account/verification/institutional/documents/types";
-    Endpoint["VERIFICATION_INSTITUTIONAL_DOCUMENTS"] = "account/verification/institutional/documents";
+    Endpoint["VERIFICATION_INSTITUTIONAL"] = "account/verification/institutional";
     Endpoint["VERIFICATION_STATUS"] = "account/verification/status";
+    // institutional verification, deprecated endpoints.
+    // The whole institutional flow was consolidated into
+    // VERIFICATION_INSTITUTIONAL when Sumsub was adopted. The server no longer
+    // routes these paths, and requests to them answer with a 404.
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    Endpoint["VERIFICATION_INSTITUTIONAL_COMPANY_SCHEMAS"] = "account/verification/institutional/company/schemas";
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    Endpoint["VERIFICATION_INSTITUTIONAL_COMPANY"] = "account/verification/institutional/company";
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    Endpoint["VERIFICATION_INSTITUTIONAL_MEMBERS_SCHEMAS"] = "account/verification/institutional/members/schemas";
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    Endpoint["VERIFICATION_INSTITUTIONAL_MEMBERS"] = "account/verification/institutional/members";
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
     Endpoint["VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES"] = "account/verification/institutional/members/types";
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    Endpoint["VERIFICATION_INSTITUTIONAL_DOCUMENTS_TYPES"] = "account/verification/institutional/documents/types";
+    /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
+    Endpoint["VERIFICATION_INSTITUTIONAL_DOCUMENTS"] = "account/verification/institutional/documents";
     // yield
     Endpoint["YIELD_PRODUCTS"] = "yield/products";
     Endpoint["YIELD_DEPOSIT"] = "yield/deposit";

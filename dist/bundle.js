@@ -5528,6 +5528,33 @@ var NotbankSdk = (() => {
         request
       );
     }
+    /**
+     * Starts the institutional verification of the authenticated user and
+     * returns the Sumsub url the user has to be sent to.
+     *
+     * It replaces the whole institutional flow that used to be spread over the
+     * company, members and documents endpoints: the user no longer fills
+     * declarations against Notbank, Sumsub collects everything instead.
+     *
+     * The account must be a business account with an active institutional
+     * verification process, otherwise the server answers with an
+     * `invalid_request` error.
+     *
+     * The url may come back as null even on a successful response, see
+     * {@link StartInstitutionalVerificationResponse.link}.
+     */
+    startInstitutionalVerification(request = {}) {
+      return this.connection.nbRequest(
+        "account/verification/institutional" /* VERIFICATION_INSTITUTIONAL */,
+        "POST" /* POST */,
+        request
+      );
+    }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     getInstitutionalCompanySchemas(request) {
       return this.connection.nbRequest(
         "account/verification/institutional/company/schemas" /* VERIFICATION_INSTITUTIONAL_COMPANY_SCHEMAS */,
@@ -5535,6 +5562,11 @@ var NotbankSdk = (() => {
         request
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     verifyInstitutionalCompany(request) {
       let _a = __spreadValues({}, request), { files, fields } = _a, cleanRequest = __objRest(_a, ["files", "fields"]);
       return this.connection.nbFormDataRequest(
@@ -5544,18 +5576,33 @@ var NotbankSdk = (() => {
         cleanRequest
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     getInstitutionalCompanyVerificationStatus() {
       return this.connection.nbRequest(
         "account/verification/institutional/company" /* VERIFICATION_INSTITUTIONAL_COMPANY */,
         "GET" /* GET */
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     getInstitutionalMemberTypes() {
       return this.connection.nbRequest(
         "account/verification/institutional/members/types" /* VERIFICATION_INSTITUTIONAL_MEMBERS_TYPES */,
         "GET" /* GET */
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     getInstitutionalMemberSchemas(request) {
       return this.connection.nbRequest(
         "account/verification/institutional/members/schemas" /* VERIFICATION_INSTITUTIONAL_MEMBERS_SCHEMAS */,
@@ -5563,6 +5610,11 @@ var NotbankSdk = (() => {
         request
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     verifyInstitutionalMember(request) {
       let _a = __spreadValues({}, request), { files, fields } = _a, cleanRequest = __objRest(_a, ["files", "fields"]);
       return this.connection.nbFormDataRequest(
@@ -5572,18 +5624,33 @@ var NotbankSdk = (() => {
         cleanRequest
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     getInstitutionalMemberVerificationStatus() {
       return this.connection.nbRequest(
         "account/verification/institutional/members" /* VERIFICATION_INSTITUTIONAL_MEMBERS */,
         "GET" /* GET */
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     getInstitutionalDocumentTypes() {
       return this.connection.nbRequest(
         "account/verification/institutional/documents/types" /* VERIFICATION_INSTITUTIONAL_DOCUMENTS_TYPES */,
         "GET" /* GET */
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     verifyInstitutionalDocument(request) {
       let _a = __spreadValues({}, request), { file } = _a, cleanRequest = __objRest(_a, ["file"]);
       return this.connection.nbFormDataRequest(
@@ -5593,6 +5660,11 @@ var NotbankSdk = (() => {
         cleanRequest
       );
     }
+    /**
+     * @deprecated the institutional flow moved to Sumsub. Use
+     * {@link VerificationService.startInstitutionalVerification}. The endpoint
+     * behind this method was retired server side and answers with a 404.
+     */
     getInstitutionalDocumentVerificationStatus() {
       return this.connection.nbRequest(
         "account/verification/institutional/documents" /* VERIFICATION_INSTITUTIONAL_DOCUMENTS */,
