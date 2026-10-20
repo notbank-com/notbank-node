@@ -130,7 +130,17 @@ export class VerificationService {
     getInstitutionalDocumentVerificationStatus() {
         return this.connection.nbRequest(Endpoint.VERIFICATION_INSTITUTIONAL_DOCUMENTS, RequestType.GET);
     }
+    /**
+     * @deprecated Use {@link VerificationService.getVerificationStatusV2}.
+     * Deprecated server side (CMKT-6117). It still answers, without a retirement date.
+     */
     getVerificationStatus(request = {}) {
         return this.connection.nbRequest(Endpoint.VERIFICATION_STATUS, RequestType.GET, request);
+    }
+    /**
+     * https://docs.notbank.exchange/#getverificationstatusv2
+     */
+    getVerificationStatusV2(request = {}) {
+        return this.connection.nbRequest(Endpoint.VERIFICATION_STATUS_V2, RequestType.GET, request);
     }
 }
