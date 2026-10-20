@@ -1,6 +1,6 @@
 import { Endpoint } from "../constants/endpoints";
 import { RequestType, ServiceConnection } from "../core/serviceClient";
-import { BasicVerificationResponse, EnumType, GetInstitutionalCompanySchemasRequest, GetInstitutionalMemberSchemasRequest, InstitutionalMember, StartInstitutionalVerificationRequest, StartInstitutionalVerificationResponse, TraderPlusVerificationSchemasRequest, VerificationStatus, VerificationStatusRequest, VerifyBasicRequest, VerifyInstitutionalCompanyRequest, VerifyInstitutionalDocumentRequest, VerifyInstitutionalMemberRequest, VerifyTraderPlusRequest, VerifyTraderRequest } from "../models";
+import { BasicVerificationResponse, EnumType, GetInstitutionalCompanySchemasRequest, GetInstitutionalMemberSchemasRequest, InstitutionalMember, StartInstitutionalVerificationRequest, StartInstitutionalVerificationResponse, TraderPlusVerificationSchemasRequest, VerificationStatus, VerificationStatusRequest, VerificationStatusV2, VerifyBasicRequest, VerifyInstitutionalCompanyRequest, VerifyInstitutionalDocumentRequest, VerifyInstitutionalMemberRequest, VerifyTraderPlusRequest, VerifyTraderRequest } from "../models";
 
 export class VerificationService {
   connection: ServiceConnection;
@@ -206,10 +206,24 @@ export class VerificationService {
     );
   }
 
-
+  /**
+   * @deprecated Use {@link VerificationService.getVerificationStatusV2}.
+   * Deprecated server side (CMKT-6117). It still answers, without a retirement date.
+   */
   getVerificationStatus(request: VerificationStatusRequest = {}): Promise<VerificationStatus> {
     return this.connection.nbRequest(
       Endpoint.VERIFICATION_STATUS,
+      RequestType.GET,
+      request
+    );
+  }
+
+  /**
+   * https://docs.notbank.exchange/#getverificationstatusv2
+   */
+  getVerificationStatusV2(request: VerificationStatusRequest = {}): Promise<VerificationStatusV2> {
+    return this.connection.nbRequest(
+      Endpoint.VERIFICATION_STATUS_V2,
       RequestType.GET,
       request
     );
