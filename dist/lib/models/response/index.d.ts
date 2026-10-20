@@ -59,6 +59,7 @@ export * from "./yieldProduct.js";
 export * from "./institutionalMember.js";
 export * from "./startInstitutionalVerification.js";
 export * from "./verificationStatus.js";
+export * from "./verificationStatusV2.js";
 export * from "./enumType.js";
 export * from "./province.js";
 export * from "./subAccount.js";

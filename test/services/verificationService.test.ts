@@ -85,4 +85,26 @@ describe("verification service", () => {
     console.log("user verification level and state:", response);
     assert.ok(response, "Response should not be null");
   });
+
+  it("should fetch the user verification status from v2", async () => {
+    const response = await client.getVerificationService().getVerificationStatusV2();
+    console.log("user verification status v2:", response);
+    assert.ok(response, "Response should not be null");
+    for (const field of ["id", "locked", "next_level", "last_previous_status", "last_previous_reason", "is_business", "verification_tier"]) {
+      assert.ok(field in response, `Response should carry ${field}`);
+    }
+    assert.strictEqual(typeof response.locked, "boolean");
+  });
+
+  it("should fetch the verification status v2 of an own subaccount", async function () {
+    // The subaccounts listing only gives numeric ids, so the subaccount user
+    // uuid has to come from the environment.
+    const userId = process.env.SUBACCOUNT_USER_ID;
+    if (!userId) {
+      this.skip();
+    }
+    const response = await client.getVerificationService().getVerificationStatusV2({ user_id: userId });
+    console.log("subaccount verification status v2:", response);
+    assert.ok(response, "Response should not be null");
+  });
 });

@@ -5671,9 +5671,23 @@ var NotbankSdk = (() => {
         "GET" /* GET */
       );
     }
+    /**
+     * @deprecated Use {@link VerificationService.getVerificationStatusV2}.
+     * Deprecated server side (CMKT-6117). It still answers, without a retirement date.
+     */
     getVerificationStatus(request = {}) {
       return this.connection.nbRequest(
         "account/verification/status" /* VERIFICATION_STATUS */,
+        "GET" /* GET */,
+        request
+      );
+    }
+    /**
+     * https://docs.notbank.exchange/#getverificationstatusv2
+     */
+    getVerificationStatusV2(request = {}) {
+      return this.connection.nbRequest(
+        "v2/account/verification/status" /* VERIFICATION_STATUS_V2 */,
         "GET" /* GET */,
         request
       );

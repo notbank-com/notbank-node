@@ -91,7 +91,9 @@ export declare enum Endpoint {
     VERIFICATION_TRADER_PLUS = "account/verification/trader-plus",
     VERIFICATION_TRADER_PLUS_SCHEMAS = "account/verification/trader-plus/schemas",
     VERIFICATION_INSTITUTIONAL = "account/verification/institutional",
+    /** @deprecated use {@link Endpoint.VERIFICATION_STATUS_V2}. Deprecated server side (CMKT-6117), still answers. */
     VERIFICATION_STATUS = "account/verification/status",
+    VERIFICATION_STATUS_V2 = "v2/account/verification/status",
     /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */
     VERIFICATION_INSTITUTIONAL_COMPANY_SCHEMAS = "account/verification/institutional/company/schemas",
     /** @deprecated use {@link Endpoint.VERIFICATION_INSTITUTIONAL}. Retired server side, answers 404. */

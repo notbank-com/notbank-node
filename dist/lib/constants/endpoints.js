@@ -105,7 +105,9 @@ export var Endpoint;
     Endpoint["VERIFICATION_TRADER_PLUS"] = "account/verification/trader-plus";
     Endpoint["VERIFICATION_TRADER_PLUS_SCHEMAS"] = "account/verification/trader-plus/schemas";
     Endpoint["VERIFICATION_INSTITUTIONAL"] = "account/verification/institutional";
+    /** @deprecated use {@link Endpoint.VERIFICATION_STATUS_V2}. Deprecated server side (CMKT-6117), still answers. */
     Endpoint["VERIFICATION_STATUS"] = "account/verification/status";
+    Endpoint["VERIFICATION_STATUS_V2"] = "v2/account/verification/status";
     // institutional verification, deprecated endpoints.
     // The whole institutional flow was consolidated into
     // VERIFICATION_INSTITUTIONAL when Sumsub was adopted. The server no longer

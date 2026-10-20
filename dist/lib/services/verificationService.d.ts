@@ -1,5 +1,5 @@
 import { ServiceConnection } from "../core/serviceClient.js";
-import { BasicVerificationResponse, EnumType, GetInstitutionalCompanySchemasRequest, GetInstitutionalMemberSchemasRequest, InstitutionalMember, StartInstitutionalVerificationRequest, StartInstitutionalVerificationResponse, TraderPlusVerificationSchemasRequest, VerificationStatus, VerificationStatusRequest, VerifyBasicRequest, VerifyInstitutionalCompanyRequest, VerifyInstitutionalDocumentRequest, VerifyInstitutionalMemberRequest, VerifyTraderPlusRequest, VerifyTraderRequest } from "../models/index.js";
+import { BasicVerificationResponse, EnumType, GetInstitutionalCompanySchemasRequest, GetInstitutionalMemberSchemasRequest, InstitutionalMember, StartInstitutionalVerificationRequest, StartInstitutionalVerificationResponse, TraderPlusVerificationSchemasRequest, VerificationStatus, VerificationStatusRequest, VerificationStatusV2, VerifyBasicRequest, VerifyInstitutionalCompanyRequest, VerifyInstitutionalDocumentRequest, VerifyInstitutionalMemberRequest, VerifyTraderPlusRequest, VerifyTraderRequest } from "../models/index.js";
 export declare class VerificationService {
     connection: ServiceConnection;
     constructor(connection: ServiceConnection);
@@ -83,5 +83,13 @@ export declare class VerificationService {
      * behind this method was retired server side and answers with a 404.
      */
     getInstitutionalDocumentVerificationStatus(): Promise<any[]>;
+    /**
+     * @deprecated Use {@link VerificationService.getVerificationStatusV2}.
+     * Deprecated server side (CMKT-6117). It still answers, without a retirement date.
+     */
     getVerificationStatus(request?: VerificationStatusRequest): Promise<VerificationStatus>;
+    /**
+     * https://docs.notbank.exchange/#getverificationstatusv2
+     */
+    getVerificationStatusV2(request?: VerificationStatusRequest): Promise<VerificationStatusV2>;
 }

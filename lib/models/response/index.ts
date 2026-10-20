@@ -59,6 +59,7 @@ export * from "./yieldProduct";
 export * from "./institutionalMember";
 export * from "./startInstitutionalVerification";
 export * from "./verificationStatus";
+export * from "./verificationStatusV2";
 export * from "./enumType";
 export * from "./province";
 export * from "./subAccount";
